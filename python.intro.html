@@ -1,0 +1,463 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/mine.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<!-- custom style-->
+		<style>
+			strong {
+				font-family: monospace;
+				color: #BFBF3F;
+			}
+			h3 {
+				color: #BF3F7F;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Introduction To Python</h3>
+					<section>
+
+					</section>
+					<section>
+						<h5>Python <b>programming</b> class</h5>
+						<p>
+						<img width="200" height="200" data-src="data/intro/images/python.code.0.jpg" />
+						<img width="200" height="200" data-src="data/intro/images/python.code.1.png" />
+						<img width="200" height="200" data-src="data/intro/images/python.code.2.png" />
+						<br />
+						<strong>NOT</strong><br />
+						<img width="150" height="150" data-src="data/intro/images/python.snake.jpg" />
+						</p>
+					</section>
+					<section>
+						<h5>Instructor</h5>
+						<p>
+							Nhan Huynh<br />
+							nh.python.atx [at] gmail.com
+						</p>
+					</section>
+					<section>
+						<h5>Attendees</h5>
+					</section>
+					<section>
+						<h5>Class and class structure</h5>
+						<ul>
+							<li>Introductory and fundamental</li>
+							<li>Hands on (examples, labs, and exercises)</li>
+							<li>Please ask questions</li>
+						</ul>
+					</section>
+					<section>
+						<h5>Class structure</h5>
+						<ol>
+							<li>Basic Python
+								<ul>
+									<li>Basic Data types (day1)</li>
+									<li>Basic Control flow</li>
+									<li>Functions (day2)</li>
+								</ul>
+							</li>
+							<li>Intermediate Python
+								<ul>
+									<li>Modules and Libraries</li>
+									<li>Data Structure</li>
+									<li>Object Oriented Programming</li>
+								</ul>
+							</li>
+						</ol>
+					</section>
+					<section>
+						<h5>Class structure (cont.)</h5>
+						Special topics
+						<ul>
+							<li>Coding style and standads</li>
+							<li>Source code control</li>
+							<li>Logging</li>
+							<li>Design Patterns</li>
+							<li>Python for web applications and web services</li>
+							<li>And more...</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h3>Basic Python</h3>
+					<ul>
+						<li>Python is a <u>high level</u> <u>interpreted</u> <u>programming language</u></li><br/>
+						<li class="fragment"><strong>high level</strong>: We don't interact with memory and data directly, but through well designed interfaces and libraries </li>
+						<li class="fragment"><strong>interpreted</strong>: We need an interpreter for each platform that we want our python code to run</li>
+						<li class="fragment"><strong>programming language</strong>: Language to communicate and tell the computers what to do</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Lab 0: Install Python and PyCharm</h3>
+					<section>
+						<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a><br />
+						<img width="500" height="500" data-src="data/basic/install/python/download.png" />
+					</section>
+					<section>
+						Install using default options
+						<img data-src="data/basic/install/python/install.png" />
+					</section>
+					<section>
+						<a href="https://www.jetbrains.com/pycharm/download/">https://www.jetbrains.com/pycharm/download/</a><br />
+						<img width="500" height="500" data-src="data/basic/install/pycharm/download.0.png" />
+					</section>
+					<section><img width="500" height="500" data-src="data/basic/install/pycharm/download.1.png" /></section>
+					<section>
+						Install using default options
+						<img data-src="data/basic/install/pycharm/install.0.png" />
+					</section>
+					<section><img data-src="data/basic/install/pycharm/install.1.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/install.2.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/install.3.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/install.4.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/install.5.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/install.6.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/run.1.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/run.2.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/run.3.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/run.4.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/run.5.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/run.6.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/run.7.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/run.8.png" /></section>
+					<section><img width="735" height="550" data-src="data/basic/install/pycharm/run.9.png" /></section>
+				</section>
+				<section>
+					<h3>PyCharm usage</h3>
+					<section><img width="735" height="550" data-src="data/basic/install/pycharm/newfile.0.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/newfile.1.png" /></section>
+					<section><img data-src="data/basic/install/pycharm/newfile.2.png" /></section>
+					<section><img width="735" height="550" data-src="data/basic/install/pycharm/newfile.3.png" /></section>
+					<section><img width="735" height="550" data-src="data/basic/install/pycharm/newfile.4.png" /></section>
+					<section><img width="735" height="550" data-src="data/basic/install/pycharm/newfile.5.png" /></section>
+				</section>
+				<section>
+					<h3>PyCharm usage: python console</h3>
+					<section><img width="735" height="550" data-src="data/basic/install/pycharm/console.0.png" /></section>
+					<section><img width="735" height="550" data-src="data/basic/install/pycharm/console.1.png" /></section>
+				</section>
+				<section>
+					<h3>Python tokens</h3>
+					<section>
+						<ul>
+							<li>Python program contains multiple <strong>statements</strong></li>
+							<li>Each statement is a line, ending with a <strong>new line</strong> (e.g hitting Enter key)</li>
+							<li>A statement contains multiple <strong>tokens</strong></li>
+							<li>Tokens are <storng>usually</storng> separated by space</li>
+						</ul>
+
+						<pre><code class="python hljs">
+>>> x = 5
+>>> print(x, 'Python is Awesome!')
+>>> sum = x + 10
+>>> sum=x+10
+						</code></pre>
+					</section>
+					<section>
+						<ul>
+							<li>A token can be any of the following
+								<ul>
+									<li>Keywords</li>
+									<li>Function invocation</li>
+									<li>Literal values</li>
+									<li>Operator</li>
+									<li>A <strong>Variable</strong></li>
+								</ul>
+						</ul>
+						<pre><code class="python hljs">
+>>> x = 5
+>>> if x > 0:
+>>>     print(x, 'Python is Awesome!')
+>>> x = 11
+>>> total = 11.90 + tip
+						</code></pre>
+					</section>
+					<section>
+						<p>A <strong>variable</strong> has:
+						<ul>
+							<li>A name (or an identifier)</li>
+							<li>A value</li>
+							<li>An associated data type</li>
+						</ul>
+						</p>
+						<pre><code class="python hljs">
+>>> x = 10
+>>> var1 = "Nhan"
+>>> 1var = 11
+  File "&lt;stdin&gt;", line 1
+    1var = 11
+       ^
+SyntaxError: invalid syntax
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<h3>Data Types</h3><br/>
+					<section>
+						<p><strong>Boolean</strong><br />
+						<ul>
+							<li>Indicate a True or False state</li>
+							<li>Has a numeric value: True: <strong>1</strong>; False: <strong>0</strong></li>
+						</ul>
+						<pre><code class="python hljs">
+>>> 10 &lt; 11
+True
+>>> 10 &gt; 11
+False
+>>> type(10 > 11)
+&lt;class 'bool'&gt;
+>>> (11 > 10) + 1
+2
+>>> (10 > 11) - 1
+-1
+						</code></pre>
+						</p>
+					</section>
+					<section>
+						<p><strong>Numbers</strong><br />
+						<ul>
+							<li>Represent numeric values</li>
+						</ul>
+						<pre><code class="python hljs">
+>>> x = 5
+>>> y = 11/x
+>>> y
+2.2
+>>> type(y)
+< class 'float'>
+>>> type(x)
+< class 'int'>
+							</code></pre>
+						</p>
+					</section>
+					<section>
+						<p><strong>String</strong><br />
+							<ul>
+								<li>A series of characters</li>
+								<li>Strings are enclosed by either <strong>single quote</strong> or <strong>double quotes</strong></li>
+							</ul>
+							<pre><code class="python hljs">
+>>> "This is a string"
+'This is a string'
+>>> 'This is also a string'
+'This is also a string'
+>>> 'This's a string too...right?'
+    File "&lt;stdin&gt;", line 1
+       'This's a string too...right?'
+             ^
+SyntaxError: invalid syntax
+
+							</code></pre>
+						</p>
+					</section>
+					<section>
+						<p>
+							<ul>
+								<li>If a string contains single quote, use double quotes to enclose it, and vice versa</li>
+								<li>Sometimes a string must be <strong>escaped</strong>, using <strong>\</strong> character</li>
+							</ul>
+						</p>
+					</section>
+					<section>
+						<p>
+							<ul>
+								<li>
+									Many characters can be <strong>escaped</strong>.
+									<ul>
+										<li><strong>\'</strong>: A single quote</li>
+										<li><strong>\"</strong>: A double quote</li>
+										<li><strong>\n</strong>: A new line</li>
+										<li><strong>\t</strong>: A tab</li>
+									</ul>
+								</li>
+
+							</ul>
+							<ul></ul>
+						</p>
+						<pre><code class="python hljs">
+>>> "This's a string"
+"This's a string"
+>>> 'This\'s also a string'
+"This's also a string"
+>>> "Jon's friend said: \"Hi!\""
+'Jon\'s friend said: "Hi!"'
+>>> print("Here's a \nNewLine")
+Here's a
+NewLine
+						</code></pre>
+					</section>
+					<section>
+						<p>Mixing data types
+						<ul>
+							<li><strong>Do not</strong> mix data types types</li>
+							<li>Python usually behaves unexpectedly, or throws an error</li>
+							<li><strong>Convert</strong> all variables to one type before using</li>
+						</ul>
+						</p>
+					</section>
+					<section>
+						<p>Mixing int and float
+						<ul>
+							<li>Usually convert both numbers to float</li>
+							<li>Force conversion by using <strong>int()</strong> or <strong>float()</strong></li>
+						</ul>
+						<pre><code class="python hljs">
+>>> 1 + 2.0
+3.0
+>>> 1 + int(1.2)
+2
+>>> float(1) + 1.2
+2.2
+						</code></pre>
+					</p>
+					</section>
+					<section>
+						<p>Mixing numbers and string
+						<ul>
+							<li>Usually cause an error</li>
+							<li>You can convert numbers to string using <strong>str()</strong></li>
+						</ul>
+						<pre><code class="python hljs">
+>>> '10' + '11'
+'1011'
+>>> 10 + 11
+21
+>>> 10 + '11'
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &ltmodule&gt;
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+>>> 10 + int('11')
+21
+>>> str(10) + '11'
+'1011'
+						</code></pre>
+						</p>
+					</section>
+					<section>
+						<ul>
+							<li>Sometimes, mixing is OK</li>
+							<li>Must be careful and anticipate unexpected behavior</li>
+						</ul>
+						<pre><code class="python hljs">
+>>> 12 * 3
+36
+>>> '12' * 3
+'121212'
+						</code></pre>
+						</p>
+					</section>
+				</section>
+				<section>
+					<h3>Operators</h3>
+						<section>
+							Common operators: <pre><code>+, -, *, **, /, //, %</code></pre></li></ul>
+							<pre><code class="python hljs">
+>>> 1 + 2
+3
+>>> 1 - 2
+-1
+>>> 2 * 3
+6
+>>> 2 ** 3
+8
+>>> 3 / 2
+1.5
+>>> 3 // 2
+1
+>>> 3 % 2
+1
+
+							</code></pre>
+						</section>
+						<section>
+							Comparison operators: <pre><code>>, <, <=, >=, ==, !=</code></pre>
+							<pre><code class="python hljs">
+
+>>> 1 == 2
+False
+>>> 1 != 2
+True
+>>> 1 = 2
+File "&lt;stdin&gt;", line 1
+SyntaxError: can&#39t assign to literal
+							</code></pre>
+						</section>
+						<section>
+							Bit-wise operators: <pre><code><<, >>, &, |, ^, ~</code></pre>
+							These is not commonly used. When we run into them, we will discuss them further
+						</section>
+					</ul>
+				</section>
+				<section>
+					<h3>Lab 01</h3>
+					<section>
+						<strong>1. Hello</strong><br />
+						Write a python script to ask for the current user’s name, and print out the following greeting:
+						<pre><code>
+Tell me your name: James Bond
+Hello James Bond ! Nice to meet you
+						</code></pre>
+					</section>
+					<section>
+						<strong>2. I can do math</strong><br />
+						Write a program to ask what year the current user was born, and print out the following message:
+						<pre><code>
+What year were you born in? 2000
+You are 18 years old. You were/will be 30 years old in 2030
+						</code></pre>
+					</section>
+					<section>
+						<strong>3. May I have your cup cakes</strong><br />
+						Write a program to ask the current user how many people are there in his/her family, then, prints out the following messages:
+						<pre><code>
+How many people are there in your family? 4
+Congratulations! You have won the "Taming the Python" contest.
+The grand prize is 103 up cakes
+If you split them evenly among all 4 people in your family, each person has 25 cup cakes.
+....May I keep the remaining 3 ...please?
+						</code></pre>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
