@@ -408,12 +408,49 @@ SyntaxError: can&#39t assign to literal
 							Bit-wise operators: <pre><code><<, >>, &, |, ^, ~</code></pre>
 							These is not commonly used. When we run into them, we will discuss them further
 						</section>
+						<section>
+							<ul>
+								<li>An operator performs an operation on <strong>variables</strong>, <strong>liternal values</strong> or an <strong>expression</strong></li>
+							</ul>
+							<pre><code class="python hljs">
+>>> x = 10
+>>> y = 5
+>>> x + y
+15
+>>> x + 20
+30
+>>> "the value of X is: " + str(x)
+'the value of X is: 10'
+							</code></pre>
+						</section>
+						<section>
+							<ul>
+								<li>Operators are executed left to right</li>
+								<li>Operators have <strong>precedence</strong> over one another.</li>
+								<li>When in doubt, use <strong>parentheses ()</strong> to enforce the correct order</li>
+							</ul>
+							<pre><code class="python hljs">
+>>> 1 + 2 * 3
+7
+>>> (1 + 2) * 3
+9
+>>> 1 + 2 * 3 ** 2
+19
+>>> ((1 + 2) * 3) ** 2
+81
+							</code></pre>
+						</section>
 					</ul>
 				</section>
 				<section>
 					<h3>Lab 01</h3>
 					<section>
-						<p>To do the labs, you need to be able to get user's input. Python provides <strong>input()</strong> to do exactly that</p>
+						<ul>
+							<li>To do the labs, you need to be able to get user's input</li>
+							<li>Python provides <strong>input()</strong> to do exactly that</li>
+							<li><strong>input()</strong> can have a <strong>prompt</strong></li>
+							<li>You can assign the user's input to a variable</li>
+						</ul>
 						<pre><code class="python hljs">
 >>> input()
 x
@@ -428,7 +465,11 @@ Give me some input: This is the input
 						</code></pre>
 					</section>
 					<section>
-						<p>You also need a way to write to the console. Python provides <strong>print()</strong> to do exactly that</p>
+						<ul>
+							<li>You also need a way to write to the console</li>
+							<li>Python provides <strong>print()</strong> to do exactly that</li>
+							<li>You can <strong>print()</strong> variable, expressions, or literal values</li>
+							<li>Use <strong>commas</strong> to separate multiple items per statement</li>
 						<pre><code class="python hljs">
 >>> print("Someething")
 Someething
