@@ -1,3 +1,29 @@
+# Instruction
+
+- To do the labs, you need to be able to get user's input. Python provides `input()` to do exactly that:
+  ```
+  >>> input()
+  x
+  'x'
+  >>> input("This is a prompt")
+  This is a promptAAAAA
+  'AAAAA'
+  >>> n = input("Give me some input: ")
+  Give me some input: This is the input
+  >>> n
+  'This is the input'
+  ```
+
+- You also need a way to write to the console. Python provides `print()` to do exactly that:
+  ```
+  >>> print("Someething")
+  Someething
+  >>> x = 10
+  >>> print(x)
+  10
+  >>> print(x, "+ 5 =", x + 5)
+  10 + 5 = 15
+  ```
 # 1. Hello
 Write a python script to ask for the current user’s name, and print out the following greeting:
 
