@@ -94,7 +94,7 @@ each person has 25 cup cakes.
                         <h5>How do we solve this?</h5>
                         <ol>
                             <li class='fragment'>What do we know? <span class='fragment'><strong>103</strong> cup cakes total</span></li>
-                            <li class='fragment'>What is our input? <span class='fragment'><strong>number of family members</strong></span></li>
+                            <li class='fragment'>What is our input? <span class='fragment'><strong>number</strong> of family members</span></li>
                             <li class='fragment'>What is our output? <br />
                                 <ul>
                                     <li class='fragment'><strong>cup cakes per person</strong></li>
@@ -129,6 +129,12 @@ remaining = 103 % family_size
                     <section><img src='data/day_02/lab01_review/assignment_3.2.png' /></section>
                     <section><img src='data/day_02/lab01_review/assignment_3.3.png' /></section>
                     <section><img src='data/day_02/lab01_review/assignment_3.error.linenumber.png' /></section>
+                    <section>
+                        <ul>
+                        <li><strong>family_size</strong> is the result of <strong>input()</strong>, which has type <strong>str</strong></li>
+                        <li>We must convert it to a number, or specficically <strong>int</strong></li>
+                        </ul>
+                    </section>
                     <section><img src='data/day_02/lab01_review/assignment_3.4.png' /></section>
                     <section><img src='data/day_02/lab01_review/assignment_3.5.png' /></section>
                     <section><img src='data/day_02/lab01_review/assignment_3.6.png' /></section>
@@ -160,7 +166,7 @@ print('....May I have the remaining', remaining, 'please?')
                         <li>So far: Python executes line by line, from top to bottom</li>
                         <li>We can not do any logic:
                             <ul>
-                            <li>Optional execution of statements (<strong>If/Then</strong> branch)</li>
+                            <li>Optionally execute these statements (<strong>If/Then</strong> branch)</li>
                             <li>Execute these statements instead of those (<strong>If/Else</strong> branch)</li>
                             <li>Repeat these statements (<strong>Loop</strong>)</li>
                             </ul>
@@ -177,8 +183,8 @@ print('....May I have the remaining', remaining, 'please?')
 code_block_0_statement1
 code_block_0_statement2
     codeblock_1_statement1
-    codeblock_2_statement2
-    codeblock_3_statement3
+    codeblock_1_statement2
+    codeblock_1_statement3
 code_block_0_statement3
 code_block_0_statement4
                             </code></pre>
@@ -206,12 +212,17 @@ if condition:
     statement2
     statement3
 statement4
-                    </code></pre></section>
+                    </code></pre>
+                    <p><ul>
+                    <li>An <strong>if</strong> clause ends with a collon (<strong>:</strong>)</li>
+                    <li>It is followed by a code block (with <strong>indentation</strong>)</li>
+                    </ul></p>
+                    </section>
                     <section>
                         <ul>
-                        <li>Solve this problem: Optional execution of a code block</li>
+                        <li>Solve this problem: <strong>Optionally</strong> execute a code block</li>
                         <li>Does not change the script's normal behavior</li>
-                        <li>But do some additional things</li>
+                        <li>But do some <strong>additional</strong> things</li>
                         </ul>
                         <pre class='python hljs'><code style='font-size: 80%;'>
 print("Don't forget your phone")
@@ -221,6 +232,10 @@ if temperature < 70:
     print("Don't forget your lunch")  # Is this what we want?
 print("Don't forget to check mail")
                         </code></pre>
+                        <ul>
+                            <li>Make sure your <strong>indentation</strong> is correct</li>
+                            <li>Do we bring lunch every day? Or only on code days?</li>
+                        </ul>
                     </section>
                 </p></section>
                 <section><p>
@@ -233,14 +248,22 @@ if condition:
     statement1
     statement2
 else:
+    statement3
     statement4
-    statement5
-statement6
+statement5
                     </code></pre>
+                    <p>
+                    <ul>
+                    <li><strong>if</strong> statement ends with a collon (<strong>:</strong>)</li>
+                    <li><strong>else</strong> statement also ends with a collon</li>
+                    <li>Each of them is followed by a code block</li>
+                    </ul>
+                    </p>
                     </section>
                     <section>
                         <ul>
-                        <li>Solve this problem: Execute either this block or that block, but <strong>not</strong> both</li>
+                        <li>Solve this problem: Execute <strong>either</strong>this block or that block</li>
+                        <li>Have to execute <strong>one</strong> and <strong>exactly one</strong> of the two blocks</li>
                         <li>This does change the script behavior</li>
                         <li>Script has to take one of the <strong>code path</strong> depending on the <strong>condition</strong></li>
                         </ul>
@@ -275,11 +298,15 @@ else:
     pass
                     </code></pre>
                     </section>
+                    <section>
+                    <p>Q: What happens if you have pass within a code block that is not empty?</p>
+                    <p>A: Nothing! <strong>pass</strong> is ignored</p>
+                    </section>
                 </section>
                 <section>
                     <h3>Branches example #1</h3>
                     <section>
-                        Write a script to ask for current user's age, print out the age, and remind him/her to vote if he/she is <strong>18</strong> or older
+                        <p>Write a script to ask for current user's age, print out the age, and remind him/her to vote if he/she is 18or older</p>
                         <pre class='python hljs'><code>
 How old are you? 21
 You are 21 years old.
@@ -291,7 +318,8 @@ You are 17 years old.
                         </code></pre>
                     </section>
                     <section>
-                        Write a script to ask for current user's <strong>age</strong>, <strong>print</strong> out the age, and <strong>remind</strong> him/her to vote <strong>if</strong> he/she is 18 or older
+                        <p>Write a script to ask for current user's <strong>age</strong>, <strong>print</strong> out the age,
+                            and <strong>remind</strong> him/her to vote <strong>if</strong> he/she is <strong>18</strong> or older</p>
                         <p>
                         <ul>
                         <li class='fragment'>What do we know? <span class='fragment'>Must be at least <strong>18</strong> to vote</span></li>
@@ -301,13 +329,15 @@ You are 17 years old.
                             <ul>
                                 <li class='fragment'>Determine if user is old enough to vote</li>
                                 <li class='fragment'>What type of <strong>branch</strong> do we use? <span class='fragment'><strong>If/Then</strong></span></li>
+                                <li class='fragment'>Why? Because if the user is not 18, we do not need to do anything</li>
                             </ul>
                         </li>
                         </ul>
                         </p>
                     </section>
                     <section>
-                        Write a script to ask for current user's age, print out the age, and remind him/her to vote if he/she is <strong>18</strong> or older
+                        <p>Write a script to ask for current user's <strong>age</strong>, <strong>print</strong> out the age,
+                            and <strong>remind</strong> him/her to vote <strong>if</strong> he/she is <strong>18</strong> or older</p>
                         <p>
                         <ol>
                         <li class='fragment'>Get current user's age <span class='fragment'>using <strong>input()</strong></span></li>
@@ -377,7 +407,7 @@ if age > 18:
     print('You can vote')
     if age > 21:
         print('You are old enough to drink')
-        print('Don not drink and vote')
+        print('Do not drink and vote')
     else:
         print('You should vote')
 else:
@@ -385,13 +415,87 @@ else:
                         </code></pre>
                     </section>
                     <section>
+                        <h5>Pop quiz</h5>
+                        <pre class='python hljs'><code>
+if age > 18:
+    print('You can vote')
+    if age >= 21:
+        print('You are old enough to drink')
+        print('Do not drink and vote')
+    else:
+        print('You should vote')
+else:
+    print('You are too young')
+                        </code></pre>
+                        <ul>
+                        <li>What get printed if the current user is 17 years old?</li>
+                        <li class='fragment'>You are too young</li>
+                    </section>
+                    <section>
+                        <h5>Pop quiz</h5>
+                        <pre class='python hljs'><code>
+if age > 18:
+    print('You can vote')
+    if age >= 21:
+        print('You are old enough to drink')
+        print('Do not drink and vote')
+    else:
+        print('You should vote')
+else:
+    print('You are too young')
+                        </code></pre>
+                        <ul>
+                        <li>What get printed if the current user is 18 years old?</li>
+                        <li class='fragment'>You are too young</li>
+                        <li class='fragment'>Is our logic correct?
+                            <pre class='python hljs'><code>if age > 18:</code></pre></li>
+                    </section>
+                    <section>
+                        <h5>Pop quiz</h5>
+                        <pre class='python hljs'><code>
+if age > 18:
+    print('You can vote')
+    if age >= 21:
+        print('You are old enough to drink')
+        print('Do not drink and vote')
+    else:
+        print('You should vote')
+else:
+    print('You are too young')
+                        </code></pre>
+                        <ul>
+                        <li>What get printed if the current user is 19 years old?</li>
+                        <li class='fragment'>You can vote</li>
+                        <li class='fragment'>You should vote</li>
+                    </section>
+                    <section>
+                        <h5>Pop quiz</h5>
+                        <pre class='python hljs'><code>
+if age > 18:
+    print('You can vote')
+    if age >= 21:
+        print('You are old enough to drink')
+        print('Do not drink and vote')
+    else:
+        print('You should vote')
+else:
+    print('You are too young')
+                        </code></pre>
+                        <ul>
+                        <li>What get printed if the current user is 21 years old?</li>
+                        <li class='fragment'>You can vote</li>
+                        <li class='fragment'>You are old enough to drink</li>
+                        <li class='fragment'>Do not vote and drink</li>
+                    </section>
+                    <section>
                         <p>You can use different conditions on different variables</p>
                         <pre class='python hljs'><code>
 if age > 5:
     if today == 'Friday':
         print("Tomorrow is Saturday, you don't have school or work")
-    else if today == 'Saturday':
-        print("Tomorrow is Sunday, you don't have school or work")
+    else:
+        if today == 'Saturday':
+            print("Tomorrow is Sunday, you don't have school or work")
 print('done')
                         </code></pre>
                     </section>
@@ -438,22 +542,66 @@ else:
     print('You are too young to do Python!')
                         </code></pre>
                     </section>
+                    <section>
+                        <h5><strong>If/Elif</strong></h5>
+                        <ul>
+                        <li>It may or may not have an <strong>else</strong> branch, depending on logic</li>
+                        <li>Make sure you check for the "larger" or more "inclusive" condition first</li>
+                        <li>e.g if age > 18, age is also > 15, but the reverse is not True</li>
+                        <li>We should test if age > 18 <strong>first</strong></li>
+                        </ul>
+                    </section>
                 </section>
                 <section>
                     <h3>Loop</h3>
                     <section>
-                    <ul><li>Repeat these statements <strong>until condition</strong></li>
-                        <li>Python syntax: Use <strong>while not condition:</strong> or <strong>while exit_condition:</strong></li>
-                        <li>exit_condition is the reverse of until condition</li>
-                        <li>If a variable is used within exit condition, it must be <strong>initialized</strong> to some value</li>
-                        <li>The variable must be <strong>updated</strong> within the loop</li>
+                    Syntax:
+                    <pre class='python hljs'><code>
+while condition:
+    statement1
+    statement2
+    statement3
+    update condition
+                    </code></pre>
+                    <ul>
+                    <li>Repeat the code block when the condition is True</li>
+                    <li>Condition <strong>must</strong> be updated within the loop</li>
+                    <li>A <strong>while</strong> statement must end with <strong>:</strong> (collon)</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>Another commonly seen phrase: execute these <strong>until</strong> condition</li>
+                        <li>Meaning: Stop execution when condition is True</li>
+                        <li>Also mean: Execute these while condition is not True </li>
+                        <li>Translate to Python:
+                            <pre class='python hljs'><code>while not condition:
+    statement_0
+    statement_1
+    update condition
+                            </code></pre>
+                        </li>
+                        <li><strong>condition</strong> must be updated within the loop</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>Another place to see loop: Execute these on the <strong>counter</strong>, <strong>upto</strong> some <strong>number</strong></li>
+                        <li>Meaning: Execute these on the counter <strong>while counter &lt;= number</strong></li>
+                        <li><strong>counter</strong> must be <strong>initialized</strong>, usually to 0 or 1</li>
+                        <li>The <strong>counter</strong> must be <strong>incremented</strong> within the loop</li>
+                        <pre class='python hljs'><code>counter = 0
+while counter <= 10:
+    print("Counting from 0 up to 10", counter)
+    counter = counter + 1   # incrementing counter
+                        </code></pre>
                     </ul>
                     </section>
                     <section><ul>
                         <li>Example 1: print 'A', print 'B', print 'C', until <strong>answer == 'Yes!'</strong>
                         <li>Translate to python:
                             <pre class='python hljs'><code>
-answer = input('Do you like Python? ')
+answer = input('Do you like Python? (You MUST say Yes)' )
 while not (answer == 'Yes'):
     print('Python is wonderful!')
     print('Python is awesome!')
@@ -470,7 +618,7 @@ print('Done')
                         <li>Fix:</li>
                     </ul>
                     <pre class='python hljs'><code>
-answer = input('Do you like Python? ')
+answer = input('Do you like Python? (You MUST say Yes)' )
 while not (answer == 'Yes'):
     print('Python is wonderful!')
     print('Python is awesome!')
@@ -479,7 +627,7 @@ while not (answer == 'Yes'):
 print('Done')
                     </code></pre>
                     </section>
-                    <section><img data-src='data/day_02/loop/like.python.0.png' /></section>
+                    <section><img data-src='data/day_02/loop/like.python.1.png' /></section>
                 </section>
                 <section>
                     <h3>Loop example</h3>
@@ -488,14 +636,14 @@ print('Done')
                         <ul>
                         <li>Get user's input as <strong>end_number</strong>, and convert that to an <strong>int</strong></li>
                         <li class='fragment'>Initialize a count to 1</li>
-                        <li class='fragment'>Start counting, <strong>until</strong> count is upto user's input</li>
+                        <li class='fragment'>Start counting, <strong>until</strong> count is <strong>upto</strong> user's input</li>
                         <li class='fragment'>Update count so we do not have an <strong>infinite loop</strong></li>
                         </ul>
                         <pre class='python hljs fragment'><code>
 answer = input('Please enter a number larger than 10:')
 end_number = int(answer)
 count = 1
-while not (count == end_number + 1):   # Why is it end number + 1???
+while count <= end_number:
     print(count)
     count = count + 1
 print('done')
@@ -507,7 +655,7 @@ print('done')
                     <h3>Loop (cont.)</h3>
                     <section>
                     <ul>
-                    <li>A loop continues to execute, unil the exit condition is <strong>True</strong></li>
+                    <li>A loop continues to execute, unil the while <strong>condition</strong> is <strong>False</strong></li>
                     <li class='fragment'>We can 'prematurely' exit the loop using <strong>break</strong></li>
                     <li class='fragment'>We can 'prematurely' restart the loop using <strong>continue</strong></li>
                     </ul>
@@ -556,7 +704,8 @@ print('done')
                     <section>
                         <ul>
                         <li>Just like nested branch, you can have nested loop</li>
-                        <li>Nested loops are not common, and generally discouraged</li>
+                        <li>Nested loops are not common, and generally discouraged due to performance implications</li>
+                        <li>You can nest multiple levels of loops</li>
                         </ul>
                         <pre class='python hljs'><code>
 round = 0
@@ -577,8 +726,8 @@ while round < 5:
                     <section>
                         <ul>
                             <li>You can nest a branch within a loop</li>
-                            <li>This is usually use to <strong>break</strong> or <strong>continue</strong> when certain condition is match</li>
-                            <li>This is also use to perform 'special cases' within a loop</li>
+                            <li>This is usually used to <strong>break</strong> or <strong>continue</strong> when certain condition is match</li>
+                            <li>This is also used to perform 'special cases' within a loop</li>
                         </ul>
                     </section>
                     <section>
@@ -596,7 +745,7 @@ while round < 5:
 answer = input('Enter the stop number: ')
 end = int(answer)
 counter = 0
-while not (counter > 100):
+while counter <= 100:
     print('Counting number:', counter)
     counter = counter + 1
     if counter > end:
@@ -611,9 +760,9 @@ print('done')
                         <p>Count from 0 to 100, and print if the current number is odd or even</p>
                         <ul>
                         <li class='fragment'>Don't need any input from user</li>
-                        <li class='fragment'>Initialize a counter to 0</li>
-                        <li class='fragment'>Start counting, <strong>unil</strong> 100</li>
-                        <li class='fragment'>Within the loop: <strong>If</strong> the counter is even, <strong>print</strong> even, <strong>else</strong>, <strong>print</strong>odd </li>
+                        <li class='fragment'><strong>Initialize</strong> a counter to 0</li>
+                        <li class='fragment'>Start counting, <strong>upto</strong> 100</li>
+                        <li class='fragment'>Within the loop: <strong>If</strong> the counter is even, <strong>print</strong> even, <strong>else</strong>, <strong>print</strong> odd</li>
                         <li class='fragment'>Within the loop: <strong>Update</strong> the counter by incrementing</li>
                         </ul>
                     </section>
@@ -628,7 +777,7 @@ while counter < 100:
     counter = counter + 1
                     </code></pre>
                     </section>
-                <section><img data-src='data/day_02/loop/stop.1.png' /></section>
+                <section><img data-src='data/day_02/loop/odd_even.0.png' /></section>
             </section>
                 <section>
                     <h3>Nested loop in a branch</h3>
@@ -683,22 +832,6 @@ else:
                             </li>
                         </ul>
                     </section>
-                    <section>
-                        <h5>Assignment #1 answer</h5>
-                        <pre class='python hljs'><code>
-answer = input("What is your birth year? ")
-birth_year = int(answer)
-answer = input("What is the current year? ")
-current_year = int(answer)
-if current_year > birth_year:
-    age = current_year - birth_year
-    print("You are", age, "years old")
-else:
-    print("Error! You can not be born in the future")
-                        </code></pre>
-                    </section>
-                    <section><img data-src='data/day_02/lab_02/age.updated.0.png' /></section>
-                    <section><img data-src='data/day_02/lab_02/age.updated.1.png' /></section>
                 </section>
                 <section>
                     <h3>Lab 02:</h3>
@@ -712,58 +845,29 @@ else:
                                     <li class='fragment'>Validate the number is <strong>between</strong> 1 and 10</li>
                                     <li class='fragment'>Meaning...<strong>if</strong> number &lt; 1: error, <strong>else, if</strong> number &gt; 10: error, <strong>else</strong> OK,
                                         using...<span class='fragment'> <strong>if/elif</strong></span></li>
-                                    <li class='fragment'>Initialize x = 1</li>
-                                    <li class='fragment'>Calculate and print number * x <strong>unitl</strong> x = <strong>11</strong></li>
+                                    <li class='fragment'>Initialize counter = 1</li>
+                                    <li class='fragment'>Calculate and print number * counter <strong>upto</strong> 10</li>
                                 </ul>
                             </li>
                         </ul>
                     </section>
-                    <section>
-                        <h5>Assignment #2: Advanced Math</h5>
-                        <pre class='python hljs'><code>
-answer = input("What multiplication table number do you like to see? ")
-number = int(answer)
-if number < 1:
-    print("Error: Number must be greater or equal to 1")
-elif number > 10:
-    print("Error: Number must be less than 10")
-else:
-    x = 1
-    while not (x == 11):
-        print(number, "*", x, "=", number * x)
-        x = x + 1
-                        </code></pre>
-                    </section>
-                    <section><img data-src='data/day_02/lab_02/multiplication.0.png' /></section>
-                    <section><img data-src='data/day_02/lab_02/multiplication.1.png' /></section>
-                    <section><img data-src='data/day_02/lab_02/multiplication.2.png' /></section>
                 </section>
                 <section>
                     <h3>Lab 02</h3>
                     <section>
                         <h5><u>Assignment #3:</u> Even more advanced math</h5>
                         <p>Print out the multiplication tables <strong>from</strong> 1 <strong>to</strong> 10</p>
-                        <ul>
-                            <li class='fragmnet'>Use previous assignment: Multiplicatton loop is the same</li>
-                            <li class='fragment'>Instead of using user input, initialize <strong>number</strong> to 1</li>
-                            <li class='fragment'>Print the mutiplication table, <strong>until</strong> number = 10h</li>
-                        </ul>
                     </section>
                     <section>
-                        <h5>Assignment #3: Even more advanced math</h5>
-                        <pre class='python hljs'><code>
-number = 1
-while not (number == 10):
-    print("Multiplication table for", number)
-    x = 1
-    while not (x == 10):
-        print(number, "*", x, "=", number * x)
-        x = x + 1
-    number = number + 1         # NOTE: Don't forget this, else infinite loop
-                        </code></pre>
+                        <h5><u>Assignment #3:</u> Even more advanced math</h5>
+                        <p>Print out the multiplication tables <strong>from</strong> 1 <strong>to</strong> 10</p>
+                        <ul>
+                            <li class='fragmnet'>Use previous assignment: Multiplication loop is the same</li>
+                            <li class='fragment'>Instead of using user input, initialize <strong>table_number</strong> to 1</li>
+                            <li class='fragment'>Print the mutiplication table, with <strong>table_number</strong> <strong>upto</strong> 10</li>
+                            <li class='fragment'><strong>table_number</strong> is another counter</li>
+                        </ul>
                     </section>
-                    <section><img data-src='data/day_02/lab_02/multiplication.2.png' /></section>
-
                 </section>
                 <section>
                     <h3>Lab 02:</h3>
@@ -771,7 +875,7 @@ while not (number == 10):
                         <h5>Assignment #4: FizzBuzz!</h5>
                         <p><ul>
                             <li>Write a script to ask the user for a number <strong>between</strong> 20 <strong>and</strong> 100 </li>
-                            <li>Count <strong>to</strong> that number. However...</li>
+                            <li>Count <strong>upto</strong> that number. However...</li>
                             <li>If the current number is <strong>divisible</strong> by 3, print "Fizz" instead</li>
                             <li>If the current number is <strong>divisible</strong> by 5, print "Buzz" instead</li>
                             <li>If the current number is <strong>divisible</strong> by both 3 and 5, print "FizzBuzz"</li>
@@ -792,85 +896,11 @@ while not (number == 10):
                                     <li class='fragment'><strong>elif</strong> counter % 5 == 0: print Buzz</li>
                                     <li class='fragment'><strong>elif</strong> counter % 15 == 0: print FizzBuzz</li>
                                     <li class='fragment'><strong>else</strong> print counter</li>
+                                    <li class='fragment'>Is the logic correct?</li>
                                 </ul>
                             </ul>
                         </ul>
                     </section>
-                    <section>
-                        <pre class='python hljs'><code>number = int(input("Please enter a number between 20 and 100: "))
-if number < 20:
-    print("Error! Number is too small")
-elif number > 100:
-    print("Error! Number is too large")
-else:
-    counter = 1
-    while not (counter == number + 1):
-        if (counter % 3) == 0:
-            print("Fizz")
-        elif (counter % 5) == 0:
-            print("Buzz")
-        elif (counter % 15) == 0:
-            print("FizzBuzz")
-        else:
-            print(counter)
-        counter = counter + 1        # Else, infinite loop!
-                        </code></pre>
-                    </section>
-                    <section><img data-src='data/day_02/lab_02/fizzbuzz.0.png' /></section>
-                    <section>
-                        <p>What's wrong?</p>
-                        <ul>
-                        <li class='fragment'>We expect <strong>15</strong> to be replaced with <strong>FizzBuzz</strong></li>
-                        <li class='fragment'>But we only see <strong>Fizz</strong>. What branch execute when counter is 15?</li>
-                        <li class='fragment'>if (counter % 3) == 0: This branch executed</li>
-                        <li class='fragment'>Problem: The cases are not <strong>mutually exclusive</strong></li>
-                        <li class='fragment'>Divisible by <strong>15</strong> also means divisible by <strong>3</strong> and <strong>5</strong></li>
-                        <li class='fragment'>But the reverse is not True</li>
-                        <li class='fragment'>Solution: Check for the "larger" condition first!</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <pre class='python hljs'><code>number = int(input("Please enter a number between 20 and 100: "))
-if number < 20:
-    print("Error! Number is too small")
-elif number > 100:
-    print("Error! Number is too large")
-else:
-    counter = 1
-    while not (counter == number + 1):
-
-        if (counter % 15) == 0:
-            print("FizzBuzz")
-        elif (counter % 3) == 0:
-            print("Fizz")
-        elif (counter % 5) == 0:
-            print("Buzz")
-        else:
-            print(counter)
-    counter = counter + 1        # Else, infinite loop!
-                            </code></pre>
-                    </section>
-                    <section><img data-src='data/day_02/lab_02/fizzbuzz.0.png' /></section>
-                    <section>
-                    <p>Lession learned from FizzBuzz</p>
-                    <ul>
-                    <li>Watch out for conditions that are not mutually exclusive</li>
-                    <li>Sometime, the coding logic is different from the wording of the prolems</li>
-                    </ul>
-                    </section>
-                </section>
-                <section>
-                    <h3>Day 02 review</h3>
-                    <ul>
-                    <li>Branch: If/Then, If/Else, If/Elif</li>
-                    <li>Loop: Initialize, exit_condition, update counter</li>
-                    <li>Poll for next class:
-                        <ol>
-                        <li>Continue with Python (function)</li>
-                        <li>Take a detour to talk about some Math</li>
-                        </ol>
-                    </li>
-                    </ul>
                 </section>
             </div>
         </div>
