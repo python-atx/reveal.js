@@ -1,0 +1,882 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+            <!-- Agenda -->
+            <section>
+                <p>
+                <h3>Day 03 Agendas</h3>
+                <ul>
+                <li>Day 02 Reviews</li>
+                <li>Day 02 Labs walkthrough</li>
+                <li>Day 03 Discussions
+                    <ul>
+                    <li>Numeric systems</li>
+                    <li>Introduction to logic</li>
+                    <li>Truth table</li>
+                    <li>Set Theory</li>
+                    </ul>
+                </li>
+                <li>Day 03 Labs</li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <h3>Day 02 Reviews</h3>
+                <section>
+                    <h5><strong>if</strong> vs <strong>if/else</strong></h5>
+                    <p>
+                    <ul>
+                    <li>Syntax:
+                        <pre class='python hljs'><code>if x < 10:
+    print('x is less than 10')
+else:
+    print('x is not less than 10')
+                        </code></pre>
+                    </li>
+                    <li><strong>if</strong> may not have an <strong>else</strong> branch</li>
+                    <li>You can use <strong>pass</strong> when either <strong>if</strong> or <strong>else</strong> branch contains no logic (tell Python
+                        the branch contains an empty block)</li>
+                    </ul>
+                    </p>
+                </section>
+                <section>
+                    <h5><strong>if</strong> vs <strong>if/else</strong></h5>
+                    <img data-src='data/day_02/branches/branches.png' />
+                </section>
+                <section>
+                    <h5><strong>elif</strong></h5>
+                    <p><ul>
+                    <li>Is a special case when you see an <strong>if/else</strong> branch is nested within the <strong>else</strong> branch of another
+                        <strong>if/else</strong></li>
+                    <li>The order of comparision <strong>matters</strong>. The first check must be the <strong>most exclusive</strong>, meaning matching
+                        the first condition means other conditions can not be True</li>
+                    <li><strong>if/elif</strong> may contains a final <strong>else</strong> branch</li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p>Syntax:</p>
+                    <pre class='python hljs'><code>
+if age > 18:
+    print('You are no longer in grade school')
+elif age > 15:
+    print('You are in highschool')
+elif age > 10:
+    print('You are in middle school')
+elif age > 5:
+    print('You are in elementary school')
+else:
+    print('You are too young to go to school')
+                    </code></pre>
+                </section>
+                <section>
+                    <img data-src='data/day_02/branches/elif.png' />
+                </section>
+                <section>
+                    <p><h5>Loops</h5>
+                    <ul>
+                    <li>Python supports <strong>while</strong> loop</li>
+                    <li>Syntax:
+                        <pre class='python hljs'><code>answer = print('Do you like Python? (please say Yes)')
+while answer != 'Yes':
+    print('Are you sure? Python is really great!')
+    answer = print('Do you like Python? (please say Yes)')
+                        </code></pre>
+                    </li>
+                    <li>Loop condition must be <strong>updated</strong> within the loop</li>
+                    <li>If counting, the counter must be <strong>initialized</strong> before the condition</li>
+                    <li>Example:
+                        <pre class='python hljs'><code>counter = 1
+while counter < 10:
+    print('Counting:', counter)
+    counter = counter + 1
+                        </code></pre>
+                    </li>
+                    </ul>
+                    </p>
+                </section>
+            </section>
+            <section>
+                <h3>Lab 02 Walkthrough</h3>
+                <section>
+                    <h5><u>Assignment #1</u>: I can calculate your age!</h5>
+                    <p>
+                    Write a script to ask current user for his/her <strong>birth year</strong>, then ask for the <strong>current year</strong>.
+                    <strong>Validate</strong> that the birth year is less than current year and print out the current user's <strong>age</strong>.
+                    Print an error <strong>otherwise</strong>.
+                    </p>
+                    <ul>
+                        <li class='fragment'>What is our input? <span class='fragment'><strong>birth_year</strong></span><span class='fragment'>, and
+                            <strong>current_year</strong></span></li>
+                        <li class='fragment'>What kind of processing/logic do we need?
+                            <ul class='fragment'>
+                                <li class='fragment'>Convert <span class='fragment'><strong>birth_year</strong> and <strong>current_year</strong>
+                                    into <strong>int</strong></li>
+                                <li class='fragment'>Validate <span class='fragment'><strong>birth_year</strong> is before <strong>current_year</strong>,
+                                    using... <span class='fragment'><strong>If/Else</strong></span></strong></li>
+                                <li class='fragment'>Calculate current user's <strong>age</strong></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h5><u>Assignment #1</u>: I can calculate your age!</h5>
+                    <pre class='python hljs'><code>answer = input('What is your birth year? ')
+birth_year = int(answer)
+current_year = int(input('What is the current year? '))
+if birth_year <= current_year:
+    age = current_year - birth_year
+    if age > 1:
+        print('You are', age, 'years old')
+    else:
+        print('You are', age, 'year old')
+else:
+    print('Invalid input! Birth year can not be in the future')
+                    </code></pre>
+                </section>
+                <section><img data-src='data/day_03/lab_02_review/age.0.png' /></section>
+                <section><img data-src='data/day_03/lab_02_review/age.1.png' /></section>
+                <section><img data-src='data/day_03/lab_02_review/age.3.png' /></section>
+            </section>
+            <section>
+                <h3>Lab 02:</h3>
+                <section>
+                    <h5><u>Assignment #2:</u> Advanced Math</h5>
+                    <p>Write a script to print out <strong>a</strong> multiplication table for a <strong>number</strong> specified by the user.</p>
+                    <ul>
+                        <li class='fragment'>What is our input? <span class='fragment'>multiplication_table_<strong>number</strong></span></li>
+                        <li class='fragment'>What kind of processing/logic do we need?
+                            <ul>
+                                <li class='fragment'>Validate the number is <strong>between</strong> 1 and 10</li>
+                                <li class='fragment'>Meaning...<strong>if</strong> number &lt; 1: error, <strong>else, if</strong> number &gt; 10: error, <strong>else</strong> OK,
+                                    using...<span class='fragment'> <strong>if/elif</strong></span></li>
+                                <li class='fragment'>Initialize counter = 1</li>
+                                <li class='fragment'>Calculate and print number * counter <strong>upto</strong> 10</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h5><u>Assignment #2:</u> Advanced Math</h5>
+                    <pre class='python hljs'><code>number = int(input('Please enter a number between 1 and 10: '))
+if number < 1:
+    print('Number is too small. It must be between 1 and 10')
+elif number > 10:
+    print('Number is too large. It must be between 1 and 10')
+else:
+    print('Multiplication table for', number)
+    counter = 1
+    while counter <= 10:
+        print(number, '*', counter, '=', number * counter)
+        counter = counter + 1
+print('Done!')
+                    </code></pre>
+                </section>
+                <section><img data-src='data/day_03/lab_02_review/adv_math.0.png' /></section>
+                <section><img data-src='data/day_03/lab_02_review/adv_math.1.png' /></section>
+                <section><img data-src='data/day_03/lab_02_review/adv_math.2.png' /></section>
+            </section>
+            <section>
+                <h3>Lab 02</h3>
+                <section>
+                    <h5><u>Assignment #3:</u> Even more advanced math</h5>
+                    <p>Print out the multiplication tables <strong>from</strong> 1 <strong>to</strong> 10</p>
+                </section>
+                <section>
+                    <h5><u>Assignment #3:</u> Even more advanced math</h5>
+                    <p>Print out the multiplication tables <strong>from</strong> 1 <strong>to</strong> 10</p>
+                    <ul>
+                        <li class='fragmnet'>Use previous assignment: Multiplication loop is the same</li>
+                        <li class='fragment'>Instead of using user input, initialize <strong>table_number</strong> to 1</li>
+                        <li class='fragment'>Print the mutiplication table, with <strong>table_number</strong> <strong>upto</strong> 10</li>
+                        <li class='fragment'><strong>table_number</strong> is another counter</li>
+                    </ul>
+                </section>
+                <section>
+                    <pre class='python hljs'><code>number = 1
+while number <= 10:
+    print('Multiplication table number', number)
+    counter = 1
+    while counter <= 10:
+        print(number, '*', counter, '=', number * counter)
+        counter = counter + 1
+    number = number + 1
+                    </code></pre>
+                </section>
+                <section><img data-src='data/day_03/lab_02_review/more_adv_math.0.png' /></section>
+            </section>
+            <section>
+                <h3>Lab 02:</h3>
+                <section>
+                    <h5><u>Assignment #4:</u> FizzBuzz!</h5>
+                    <p><ul>
+                        <li>Write a script to ask the user for a number <strong>between</strong> 20 <strong>and</strong> 100 </li>
+                        <li>Count <strong>upto</strong> that number. However...</li>
+                        <li>If the current number is <strong>divisible</strong> by 3, print "Fizz" instead</li>
+                        <li>If the current number is <strong>divisible</strong> by 5, print "Buzz" instead</li>
+                        <li>If the current number is <strong>divisible</strong> by both 3 and 5, print "FizzBuzz"</li>
+                    </ul>
+                </section>
+                <section>
+                    <h5><u>Assignment #4:</u> FizzBuzz!</h5>
+                    <ul>
+                    <li>What's our input? <span class='fragment'><strong>number</strong></span></li>
+                    <li class='fragment'>What kind of processing/logic do we need?</li>
+                        <ul>
+                            <li class='fragment'>Validate the number is <strong>between</strong> 20 <strong>and</strong> 100, using...<span class='fragment'><strong>If/Elif</strong></span></li>
+                            <li class='fragment'><strong>Initialize</strong> counter = 1</li>
+                            <li class='fragment'>Loop the following <strong>until</strong> counter == number</li>
+                            <ul>
+                                <li class='fragment'>What kind of branch do we use? <span class='fragment'><strong>If/Elif</strong></span></li>
+                                <li class='fragment'><strong>if</strong> counter % 3 == 0: print Fizz</li>
+                                <li class='fragment'><strong>elif</strong> counter % 5 == 0: print Buzz</li>
+                                <li class='fragment'><strong>elif</strong> counter % 15 == 0: print FizzBuzz</li>
+                                <li class='fragment'><strong>else</strong> print counter</li>
+                            </ul>
+                        </ul>
+                    </ul>
+                </section>
+                <section>
+                    <pre class='python hljs'><code>number = int(input('Please enter a number between 20 and 100: '))
+if number < 20:
+    print('Error! Number must be between 20 and 100, inclusive')
+elif number > 100:
+    print('Error! Number must be between 20 and 100, inclusive')
+else:
+    counter = 1
+    while counter <= number:
+        if counter % 3 == 0:
+            print('Fizz')
+        elif counter % 5 == 0:
+            print('Buzz')
+        elif counter % 15 == 0:
+            print('FizzBuzz')
+        else:
+            print(counter)
+        counter = counter + 1
+                    </code></pre>
+                </section>
+                <section><img data-src='data/day_03/lab_02_review/fizzbuzz.0.png' /></section>
+                <section>
+                    <h5><u>Assignment #4:</u> FizzBuzz!</h5>
+                    <ul>
+                    <li>What's wrong? <span class='fragment'>when counting <strong>15</strong>, we expect FizzBuzz, but we see Fizz instead</span></li>
+                    <li class='fragment'>Why? <span class='fragment'>because 15 is <strong>divisible</strong> by <strong>3</strong>,
+                        <strong>5</strong>, and <strong>15</strong></span></li>
+                    <li class='fragment'>Solution? <span class='fragment'>test the <strong>most exclusive</strong> condition first</span></li>
+                    </ul>
+                </section>
+                <section>
+                    <pre class='python hljs'><code>number = int(input('Please enter a number between 20 and 100: '))
+if number < 20:
+    print('Error! Number must be between 20 and 100, inclusive')
+elif number > 100:
+    print('Error! Number must be between 20 and 100, inclusive')
+else:
+    counter = 1
+    while counter <= number:
+        if counter % 15 == 0:
+            print('FizzBuzz')
+        elif counter % 3 == 0:
+            print('Fizz')
+        elif counter % 5 == 0:
+            print('Buzz')
+        else:
+            print(counter)
+        counter = counter + 1</code></pre>
+                </section>
+                <section><img data-src='data/day_03/lab_02_review/fizzbuzz.2.png' /></section>
+                <section>
+                    <ul>
+                    <p>
+                    <li>Any other solutions?</li>
+                    <li class='fragment'>Divisible by 3 and 5 are <strong> not mutually exclusive</strong></li>
+                    <li class='fragment'>If counter is divisible by 15, it is also devisible by both 5 and 3</li>
+                    <li class='fragment'>We can check if counter is divisible by 3 and 5 <strong>independently</strong> of each other:
+                        <pre class='python hljs'><code>if counter % 3 == 0:
+    print('Fizz')
+if counter % 5 == 0:
+    print('Buzz')
+                        </code></pre>
+                    </li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p><ul>
+                    <li>We still need to decide if we should print out the counter</li>
+                    <li class='fragment'>There are two cases: special (Fizz, Buzz) and not special (just counter)</li>
+                    <li class='fragment'>Use a special flag to see if we need to print out the counter</li>
+                    </ul></p>
+                </section>
+                <section>
+                    <pre class='python'><code>number = int(input('Please enter a number between 20 and 100: '))
+# skip validation to save some room
+counter = 1
+while counter <= number:
+    special = False
+    if counter % 3 == 0:
+        print(counter, 'turns into Fizz')
+        special = True
+    if counter % 5 == 0:
+        print(counter, 'turns into Buzz')
+        special = True
+    if not special:
+        print(counter)
+    counter = counter + 1
+                    </code></pre>
+                </section>
+                <section><img data-src='data/day_03/lab_02_review/fizzbuzz.3.png' /></section>
+                <section>
+                    <p><ul>
+                    <li>15 is checked twice, and appears twice</li>
+                    <li class='fragment'>Because we use <strong>print()</strong>, and print terminate the line</li>
+                    <li class='fragment'>Maybe we can <strong>build a string</strong> before <strong>print</strong>ing only <strong>once</strong></li>
+                    </ul></p>
+                </section>
+                <section>
+                    <pre class='python'><code>number = int(input('Please enter a number between 20 and 100: '))
+# skip validation to save some room
+counter = 1
+while counter <= number:
+    special = False
+    output = ''
+    if counter % 3 == 0:
+        output = output + 'Fizz'
+        special = True
+    if counter % 5 == 0:
+        output = output + 'Buzz'
+        special = True
+    if not special:
+        output = str(counter)
+    print(output)
+    counter = counter + 1
+                    </code></pre>
+                </section>
+                <section><img data-src='data/day_03/lab_02_review/fizzbuzz.4.png' /></section>
+            </section>
+            <section>
+                <h3>More data types: <strong>collection</strong></h3>
+                <ul>
+                    <li>A collection data type contains multiple items</li>
+                    <li>Example of collection items: list, tupple, set, dictionary, <strong>string</strong></li>
+                    <li>You can get the <strong>size</strong> of a collection using <strong>len(</strong>collection<strong>)</strong></li>
+                    <li>A collection can be <strong>iterrated</strong>, using a <strong>for/in</strong> loop:
+                        <pre class='python hljs'><code>for item in collection:
+    print(item)
+    do_something_with_item
+                        </code></pre>
+                    </li>
+                    <li>Using <strong>for</strong> loop, you do not need to update counter, or condition</li>
+                </ul>
+            </section>
+            <section>
+                <h3>list</h3>
+                <section>
+                <ul>
+                <li>A <strong>list</strong> is an <strong>ordered</strong> collection data type</li>
+                <li>Items within a list does not need to be of the same types</li>
+                <li>Within python, you can construct a list by:
+                    <pre class='python hljs'><code>alist = [1, 2, "three"]</code></pre>
+                </li>
+                <li>You can access an item within a list using its <strong>index</strong> starting at 0</li>
+                <li>With the example above:
+                    <ul>
+                    <li>alist[0] gives <strong>number</strong> 1</li>
+                    <li>alist[2] gives <strong>string</strong> "three"</li>
+                    </ul>
+                </li>
+                <li>List index can be <strong>negative</strong>, meaning indexing from the <strong>right</strong>:
+                    <ul>
+                    <li>alist[-1] gives string "three"</li>
+                    <li>alist[-2] gives number 2</li>
+                    </ul>
+                </li>
+                </ul>
+                </section>
+                <section>
+                <ul>
+                <li>You can get the size of a list using <strong>len()</strong>
+                    <pre class='python hljs'><code>>>> alist = ['a', 'b', 'c', 'd']
+>>> len(alist)
+4
+                    </code></pre>
+                </li>
+                </ul>
+                </section>
+                <section>
+                <p>Example: Count from 1 to 10</p>
+                <pre class='python hljs'><code>numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print('Counting', len(numbers), 'times:')
+for number in numbers:
+    print(number)
+                </code></pre>
+                <pre class='python hljs'><code>for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+    print(number)
+                </code></pre>
+                </section>
+                <section>
+                <ul><li>You can <strong>append</strong> to a list:</li></ul>
+                <pre class='python hljs'><code>>>> alist = [1, 2]
+>>> print(len(alist))
+2
+>>> alist.append("three")
+>>> print(len(alist))
+3
+>>> for item in alist:
+...     print(item)
+1
+2
+three
+                </code></pre>
+                </section>
+                <section>
+                <ul>
+                <li>You can <strong>pop</strong> an item from a list</li>
+                <li>Without an argument, <strong>pop</strong> gives the last item</li>
+                </ul>
+                <pre class='python hljs'><code>>>> alist = [1, 2, 3, 4]
+>>> x = alist.pop()
+>>> print (x, alist)
+4 [1, 2, 3]
+>>> print(alist.pop(1))
+2
+>>> print(alist)
+[1, 3]
+                </code></pre>
+                </section>
+                <section>
+                <ul>
+                <li>You can <strong>del</strong>ete an item from a list:
+                <pre class='python hljs'><code>>>> alist=[1, 2, 3]
+>>> del alist[1]
+>>> print(len(alist))
+2
+>>> print(alist)
+[1, 3]
+                </code></pre></li>
+                </ul>
+                </section>
+                <section>
+                <p><ul>
+                <li>You can update an item of a list:
+                    <pre class='python hljs'><code>alist = [1, 2, 3]
+alist[1] = 'x'
+print(alist)    # print [1, x, 3]
+                    </code></pre>
+                </li>
+                </ul></p>
+                </section>
+                <section>
+                    <ul><li>You can <strong>concaternate</strong> two lists</li></ul>
+                    <pre class='python hljs'><code>>>> listA = [1, 2, 3]
+>>> listB = [4, 5, 6]
+>>> listC = listA + listB
+>>> print(listC)
+[1, 2, 3, 4, 5, 6]
+>>> listD = listA.append(listB)
+>>> print(listD)
+None
+>>> print(listA)
+[1, 2, 3, [4, 5, 6]]
+>>> # ListA is a list of 4 items. The 4th item (index 3) is a list with 3 items
+                    </code></pre>
+                </section>
+                <section>
+                    <ul>
+                    <li>It is so common to need a list of 0 to <strong>x</strong> that Python has a shorthand to do that</li>
+                    <li>To iterate numbers from 0 to <strong>19</strong>:
+                        <pre class='python hljs'><code>for number in range(20):
+    print(number)   # print 0, 1, 2, .... 17, 18, 19. NOT 20
+                        </code></pre>
+                    </li>
+                    <li>Official syntax:
+                        <ul>
+                        <li><pre class='python hljs'><code>range(10) # generate [0, 1, 2, 3, ...., 8, 9]</code></pre></li>
+                        <li><pre class='python hljs'><code>range(2, 10)  # generate [2, 3, ... 8, 9]</code></pre></li>
+                        <li><pre class='python hljs'><code>range(2, 10, 2)  # generate [2, 4, 6, 8]</code></pre></li>
+                        </ul>
+                    </li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h3>Slicing</h3>
+                <section>
+                <ul>
+                <li>We can slice a list, just like bread...</li>
+                <li>Syntax: alist[<strong>start</strong>:<strong>end</strong>:<strong>step</strong>]</li>
+                <li>Create a <strong>new</strong> list
+                    <ul>
+                    <li>Starting at index <strong>start</strong>. start is 0 when left blank</li>
+                    <li>Ending at index <strong>end</strong>. end is last index with left blank</li>
+                    <li>Using an increment of <strong>step</strong> for each element. step is 1 when left blank</li>
+                    </ul>
+                </li>
+                </ul>
+                </section>
+                <section>
+                <ul>
+                <li>What do we get?
+                    <pre class='python hljs'><code>>>> alist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+>>> aslice = alist[1:3]    # gives [2, 3]
+>>> aslice = alist[4::2]   # gives [5, 7, 9]
+>>> aslice = alist[:4:]    # gives [1, 2, 3, 4]
+>>> aslice = alist[::-1]   # gives [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+>>> aslice = alist[1:3:-1] # gives []: empty list
+>>> aslice = alist[3:1:-1] # gives [3, 2]
+                    </code></pre>
+                </li>
+                </ul>
+                </section>
+            </section>
+            <section>
+                <h3>Tuple</h3>
+                <section>
+                <ul>
+                <li>It's like a list. It is <strong>ordered</strong></li>
+                <li>Usually can be used interchangably with a list</li>
+                <li>But tupple is <strong>immutable</strong></li>
+                <li>You <strong>can not</strong> append, delete, pop, etc with a tuple</li>
+                <li>Why have a tuple? <span>Large tuple iteration is <strong>faster</strong> than list</span></li>
+                <li>You can convert a list to a tuple using <strong>tuple(</strong>alist<strong>)</strong></li>
+                <li>You can convert a tuple to a list using <strong>list(</strong>atuple<strong>)</strong></li>
+                <li>You can <strong>slice</strong> a tuple, just like a list</li>
+                </ul>
+                </section>
+                <section>
+                <ul>
+                <li>You can access all items of a tuple in one shot:
+                    <pre class='python hljs'><code>atuple= (1, 2, 3, 4)
+(w, x, y, z) = atuple
+print(x)        # print 2
+print(z)        # print 4
+                    </code></pre>
+                </li>
+                <li>Sometimes the <strong>()</strong> can me omitted:
+                    <pre class='python hljs'><code>x, y, z = 1, 2, 3
+print(x)        # print 1
+print(z)        # print 3
+                    </code></pre>
+                </li>
+                <li>To do this, you must access <strong>all</strong> items of a tuple:
+                    <pre class='python hljs'><code>x, y = 1, 2, 3    # Throw an error: ValueError: too many values to unpack
+                    </code></pre>
+                </li>
+                </ul>
+                </section>
+            </section>
+            <section>
+                <h3>Set</h3>
+                <section>
+                <ul>
+                <li>A set can be constructed using <strong>{</strong> and <strong>}</strong></li>
+                <li>A set can created using another <strong>collection</strong> (a list or a tuple)</li>
+                <li>Use <strong>set(</strong>collection<strong>)</strong></li>
+                <li>A set is a collection of <strong>unique</strong> items:
+                    <pre class='python hljs'><code>>>> alist = [1, 2, 3]
+>>> alist.append(3)
+>>> print(alist)
+[1, 2, 3, 3]
+>>> aset = set(alist)
+>>> print(aset)
+{1, 2, 3}
+                    </code></pre>
+                </li>
+                </ul>
+                </section>
+                <section>
+                <ul>
+                    <li>You can not access an item using <strong>index</strong>. A set is <strong>not</strong> ordered</li>
+                    <li>You can <strong>add</strong> or <strong>remove</strong> an item from a set, using the <strong>value</strong></li>
+                </ul>
+                <pre class='python hljs'><code>>>> aset = {1, 2, 3}
+>>> aset.add(4)
+>>> print(aset)
+{1, 2, 3, 4}
+>>> aset.remove(2)
+>>> print(aset)
+{1, 3, 4}
+                </code></pre>
+                </section>
+            </section>
+            <section>
+                <h3>dictionary</h3>
+                <section>
+                <ul>
+                <li>A collection of <strong>key</strong>:<strong>value</strong> pairs</li>
+                <li>Each item value can be anything</li>
+                <li>A <strong>dict</strong> is <strong>not</strong> ordered</li>
+                <li>You can access an item using adict<strong>[</strong>key<strong>]</strong></li>
+                <li>It looks like a list, but it is not!</li>
+                <li>alist[4] exists means alist[3] also exists. adict[4] exists does <strong>not</strong> means adict[3] also exists</li>
+                </ul>
+                </section>
+                <section>
+                <ul>
+                <li>The key is usually a <strong>string</strong>, but it can be a number as well</li>
+                </ul>
+                <pre class='python hljsl'><code>adict = {
+    'key0': 'value0',
+    'key1': 10,
+    5     : 'five'
+    '5'   : 'five string'
+}
+print(adict['key0'])            # print 'value0'
+print(adict[5])                 # print 'five'
+print(adict[5] == adict['5'])   # print False
+                </code></pre>
+                </section>
+                <section>
+                <p>How do we iterate a dictionary?</p>
+                <ol>
+                <li>Get a list of <strong>keys</strong>, and iterate through that list using for
+                    <pre class='python hljs'><code>adict = {'k0': '0', 'k1': 1}
+keys = adict.keys()      # keys is ['key0', 'k1']
+for key in keys:
+    value = adict[key]
+    print(key, "->", value)
+                    </code></pre>
+                </li>
+                <li>Use a shorthand:
+                    <pre class='python hljs'><code>adict = {'k0': '0', 'k1': 1}
+for key in adict:
+    print(key, '->', adict[key])
+                    </code></pre>
+                </li>
+                </ol>
+                </section>
+            </section>
+            <section>
+                <h3>More on string</h3>
+                <section>
+                <ul>
+                <li>Technically, a string is a collection of <strong>characters</strong></li>
+                <li>A string is immutable: You can not update an item within a string:
+                    <pre class='python hljs'><code>s = 'this is a string'
+s[0] = 'T'   # Error: TypeError: 'str' object does not support item assignment
+                    </code></pre>
+                </li>
+                <li>You can access a character from the string, using its <strong>index</strong></li>
+                <li>You can <strong>slice</strong> a string just list a list or tuple</li>
+                <li>You can iterate through a string:
+                    <pre class='python hljs'><code>s = 'This is a string'
+for c in s:
+    print('A character:', c)
+                    </code></pre>
+                </li>
+                </ul>
+                </section>
+            </section>
+            <section>
+                <h3>collections</h3>
+                <section>
+                <ul>
+                <li>All collections support the <strong>in</strong> operation to test for membership:
+                    <pre class='python hljs'><code>if x in collection:</code></pre></li>
+                <li>All collections that support <strong>index</strong>ing will gives an error if the index is <strong>out of bound</strong></li>
+                <li>All collections supports <strong>iteration</strong>. You can use the <strong>for</strong> loop</li>
+                <li>You can <strong>always</strong> convert a <strong>for</strong> loop to <strong>while</strong></li>
+                <li>But <strong>for</strong> loop is usually <strong>cleaner</strong>, and preferred</li>
+                </ul>
+                </section>
+            </section>
+            <section>
+                <h3>Examples</h3>
+                <section>
+                <p>Example #1: read a string from the user, and convert each numeric character to a full string: '0' becomes 'zero', '1' becomes 'one'</p>
+                <ul>
+                <li class='fragment'>What type of loop do we need? <span class='fragment'><strong>for</strong></span></li>
+                <li class='fragment'><strong>for</strong> each character c, if c is '0', print 'zero', if c is '1', prints 'one'</li>
+                <li class='fragment'>Within the list, we need a branch. What type of branch? <span class='fragment'><strong>if/elif</strong></span></li>
+                <li class='fragment'>Since want to print the whole input on one line, we need to <strong>build</strong> the input string, one character at a time</li>
+                <li class='fragment'>By concaternating either the character, or the number replacement</li>
+                </ul>
+                </section>
+                <section>
+                <p>Example #1: read a string from the user, and convert each numeric character to a full string: '0' becomes 'zero', '1' becomes 'one'</p>
+                <pre class='python hljs'><code>statement = input('Please enter a statement, with some numbers: ')
+output = ''     # initialize the output, which is concaternated as we go through the loop
+for c in statement:
+    if c == '0':
+        output = output + 'zero'
+    elif c == '1':
+        output = output + 'one'
+    ...
+    elif c == '9':
+        output = output + 'nine'
+    else:
+        output = output + c
+print(output)
+                </code></pre>
+                </section>
+                <section>
+                <p>Example #1: read a string from the user, and convert each numeric character to a full string: '0' becomes 'zero', '1' becomes 'one'</p>
+                <p>Most <strong>if/elif</strong> problem can be solved using <strong>dictionary</strong> and a membership check</p>
+                <pre class='python hljs'><code>statement = input('Please enter a statement with some numbers: ')
+mapping = {'0': 'zero', '1': 'one', '2': 'two' } # and more
+keys = mapping.keys()
+output = ''
+for c in statement:
+    if c in keys:
+        output = output + mapping[c]
+    else:
+        output = output + c
+print(output)
+                </code></pre>
+                </section>
+
+                <section>
+                    <p>Example #2: count upto a number specified by the user, and print if the current number is odd or even</p>
+                    <ul>
+                    <li>Read user's input, and convert to a number. Validate it</li>
+                    <li>This time, we use range()</li>
+                    </ul>
+                    <pre class='python hljs'><code>num = int(input('Please enter a number greater than 5: '))
+while num <= 5:
+    print('Bad input! Number must be greater than 5')
+    num = int(input('Please enter a number greater than 5: '))
+
+for n in range(num):
+    if n % 2 == 0:
+        print(n, 'is an odd number')
+    else:
+        print(n, 'is an even number')
+                    </code></pre>
+                </section>
+                <section>
+                    <p>Example #2: count upto a number specified by the user, and print if the current number is odd or even</p>
+                    <ul>
+                    <li>A different solution:</li>
+                    <li>n % 2 (the remainder) is always either 0 or 1</li>
+                    <li>What if we have a list of two items ['odd', 'even'] and we can simply select one of the two</li>
+                    </ul>
+                    <pre class='python hljs'><code>num = int(input('Please enter a number greater than 5: '))
+while num <= 5:
+    print('Bad input! Number must be greater than 5')
+    num = int(input('Please enter a number greater than 5: '))
+
+oddeven = ['even', 'odd']   # why? can we set it to be ['odd', 'even']?
+for n in range(num):
+    remainder = n % 2
+    print(n, 'is an', oddeven[remainder], 'number' )
+                                </code></pre>
+                </section>
+                <section>
+                <p>Example #3: Keep asking user to enter a list of names. Then, evenly try to split them into 3 groups: A, B and C. Print out the result <br />
+                Jon belongs to group A<br />
+                Nancy belongs to group B<br />
+                Steve belongs to group C<br />
+                ...<br />
+                Totally, there are <strong>20</strong> people</p>
+                <ul>
+                <li>We need a list of groups, containing the "names": ['A', 'B', 'C']</li>
+                <li>Keep asking the user for a name to add to a list of names</li>
+                <li>Until user enter "finish"</li>
+                </ul>
+                </section>
+                <section>
+                <ul>
+                <li>For each name in the list of names
+                    <ul>
+                    <li>Increment a counter</li>
+                    <li>Determine the group name, using the counter as index to <strong>groups</strong> list</li>
+                    <li>What if counter is larger than 3?</li>
+                    <li>We can use <strong>%</strong> to make <strong>wrap</strong> the index around</li>
+                    <li>print <strong>name</strong> belongs to group <strong>group_name</strong></li>
+                    </ul>
+                </li>
+                <li>Print the total number of people</li>
+                </ul>
+                </section>
+                <section>
+                <p>Example #3: Keep asking user to enter a list of names. Then, evenly try to split them into 3 groups: A, B and C. Print out the result</p>
+                <pre class='python hljs'><code>groups = ['A', 'B', 'C']
+number_of_groups = len(group)
+names = []
+name = input('Please enter a name. Enter "finish" to stop: ')
+while not name == 'finish':
+    names.append(name)
+    name = input('Please enter a name. Enter "finish" to stop: ')
+
+count = 0
+for name in names:
+    print(name, 'belongs to group', groups[count % number_of_groups])
+    count = count + 1
+print('Totally, there are', count, 'people')
+                </code></pre>
+                </section>
+                <section>
+                <p>Example #4: Ask a user for a statement. Then, count the number of apperance for each letter</p>
+                <ul>
+                <li>We need something to keep the result</li>
+                <li>The result includes <strong>letter</strong> and the associated <strong>occurance</strong></li>
+                <li>Look like a key:value, so we use a dictionary</li>
+                <li>Iterate through the statement, for each character:
+                    <ul>
+                    <li>If the letter already exists in the result (we have a count for it), get the count and increment it.</li>
+                    <li>Use <strong>in</strong> to test for membership</li>
+                    <li>Upate the count after the increment</li>
+                    <li>If the letter is not in the result: initialize the count to 1</li>
+                    <li>Update the result to include the current character</li>
+                    </ul>
+                </li>
+                </ul>
+                </section>
+                <section><pre class='python hljs'><code>s = input('Please enter a sentence: ')
+result = {}     # initialize an empty dictionary
+for c in s:
+    if c in result.keys():
+        count = result[c]
+        count = count + 1
+        result[c] = count
+    else:
+        result[c] = 1
+
+for c in result:
+    print(c, 'appears', result[c], 'times')
+                </code></pre></section>
+            </section>
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'>
+            <div class='slides'>
+                <!-- Agenda -->
+
+                    <section>
+                        <h3>Numbering systems: <strong>decimal</strong></h3>
+                        <section>
+                        <p><ul>
+                        <li>We all know the <strong>decimal</strong> numbering system</li>
+                        <li>Use 10 different <strong>symbols</strong> to represent numbers
+                            <pre class='python hljs'><code>
+0 1 2 3 4 5 6 7 8 9
+                            </code></pre>
+                        </li>
+                        <li>Once we exhaust the amount of symbols...(counting up to 9)</li>
+                        <li>We add an additional symbol to the <strong>right</strong> to count the next number</li>
+                        <li>The right most symbol/digit: the <strong>least significant</strong> digit</li>
+                        <li>Difference between $1000 and $1000<strong>1</strong> is small (only $1)</li>
+                        <li>Difference between $1000 and $1<strong>1</strong>0 is HUGE </li>
+                        </ul></p>
+                        </section>
+                    </section>
+                    <section>
+                        <h3>Numbering system: <strong>binary</strong></h3>
+                        <section>
+                        <p><ul>
+                        <li>Used by the computer</li>
+                        <li>There are only two symbols: <strong>0</strong> and <strong>1</strong></li>
+                        <li>1: has power, 0 no power</li>
+                        <li>When we exhaust the amount of symbols....(counting 0, then 1)</li>
+                        <li>We add an additional symbol to the <strong>right</strong></li>
+                        <li><strong>10</strong> in binary is <strong>2</strong> in decimal</li>
+                        </ul></p>
+                        </section>
+                        <section>
+                        <p><ul>
+                        <li>We can do addition:
+                            <pre class='python hljs'><code>
+    101              101
++     1     AND   +   11
+=   110           = 1000
+                            </code></pre>
+                        </li>
+                        <li>And we can do multiplication:
+                            <pre class='python hljs'><code>
+11 * 10 = 110
+                            </code></pre>
+                        </li>
+                        <li>And other computations: subtraction, division, power, modulo, etc</li>
+                        <li>Let the computer do it for you (using windows <strong>calc</strong></li>
+                        </ul></p>
+                        </section>
+                        <section>
+                            <p>You can convert from decimal to binary</p>
+                            <img data-src='data/day_03/binary/binary.0.jpeg'>
+                        </section>
+                        <section>
+                            <p>You can convert from binary to decimal</p>
+                            <img data-src='data/day_03/binary/binary.1.gif'>
+                        </section>
+                        <section>
+                            <p>but....Python does it much better</p>
+                            <pre class='python hljs'><code>
+>>> binary = bin(120)
+>>> print(binary, type(binary))
+0b1111000 < class 'str' >
+>>> num = int('110011', base=2)
+>>> print (num, type(num))
+51 < class 'int' >
+                            </code></pre>
+                        </section>
+                    </section>
+                    <section>
+                        <h3>Numbering System: <strong>hex</strong></h3>
+                        <section>
+                            <p><ul>
+                            <li>Full name: <strong>hexadecimal</strong></li>
+                            <li>Uses 16 symbols: 0, 1, .... 9, A, B, C, D, E, F</li>
+                            <li>Usually starts with <strong>0x</strong> in the beginning to signal hexadecimal</li>
+                            <li>The "letters" are not case sensitive: 0x1F == 0x1f</li>
+                            <li><strong>10</strong> in decimal is <strong>A</strong> in hexadecimal</li>
+                            </ul></p>
+                        </section>
+                        <section>
+                            <p><ul>
+                            <li>You can use hex numbers in Python by using <strong>0x</strong> before the number
+                                <pre class='python hljs'><code>>>> x = 0x1A
+>>> print(x)
+26
+                                </code></pre>
+                            </li>
+                            <li>Also let python do conversion for us
+                            <pre class='python hljs'><code>>>> hexvalue = hex(31337)
+>>> print(hexvalue, type(hexvalue))
+0x815D < class 'str'>
+>>> num = int('100', base=2)
+>>> print(num)
+4
+>>> num = int('100', base=16)
+>>> print(num)
+256
+                            </code></pre>
+                            </li>
+
+                            </ul></p>
+                        </section>
+                    </section>
+                    <section>
+                        <h3>Boolean logic</h3>
+                        <section>
+                            <p><ul>
+                                <li>Math that focus on <strong>truth statement</strong> (statement that is either True or False)</li>
+                                <li>Example: "It is raining"</li>
+                                <li>Non-Example: "It may rain later"</li>
+                                <li>We call a statement S: S = "It is raining"</li>
+                                <li>The reverse of S is: NOT S: "It is NOT raining"</li>
+                            </ul></p>
+                        </section>
+                        <section>
+                            <p><ul>
+                            <li>We also want to <strong>combine</strong> truth statements</li>
+                            <li>Using <strong>AND</strong>, <strong>OR</strong> and <strong>XOR</strong> (Exclusive OR)</li>
+                            </ul></p>
+                        </section>
+                        <section>
+                            <ul><li>
+                            <strong>AND</strong> truth table:<br />
+                            <table>
+                                <tr><th>A</th><th>B</th><th>A <strong>AND</strong> B</th></tr>
+                                <tr><td><strong>True</strong></td><td><strong>True</strong></td><td><strong>True</strong></td></tr>
+                                <tr><td><strong>True</strong></td><td>False</td><td>False</td></tr>
+                                <tr><td>False</td><td><strong>True</strong></td><td>False</td></tr>
+                                <tr><td>False</td><td>False</td><td>False</td></tr>
+                            </table>
+                            </li></ul>
+                        </section>
+                        <section>
+                            <ul><li>
+                            <strong>OR</strong> truth table
+                            <table>
+                                <tr><th>A</th><th>B</th><th>A <strong>OR</strong> B</th></tr>
+                                <tr><td><strong>True</strong></td><td><strong>True</strong></td><td><strong>True</strong></td></tr>
+                                <tr><td><strong>True</strong></td><td>False</td><td><strong>True</strong></td></tr>
+                                <tr><td>False</td><td><strong>True</strong></td><td><strong>True</strong></td></tr>
+                                <tr><td>False</td><td>False</td><td>False</td></tr>
+                            </table>
+                            </li></ul>
+                        </section>
+                        <section>
+                            <ul><li>
+                            <strong>NOT</strong> truth table
+                            <table>
+                                <tr><th>A</th><th><strong>NOT</strong> A</th></tr>
+                                <tr><td><strong>True</strong></td><td>False</td></tr>
+                                <tr><td>False</td><td><strong>True</strong></td></tr>
+                            </table>
+                            </li></ul>
+                        </section>
+                        <section>
+                            <p><ul>
+                            <li>Within Python, you can also combine truth statements in your conditions for branch and loops</li>
+                            <li>Python supports <strong>and</strong>(<strong>&</strong>), <strong>or</strong>(<strong>|</strong>) and <strong>not</strong>(<strong>!</strong>)</li>
+                            <li>Python <strong>prefers</strong> words over symbols (<strong>and</strong> is better and easier to read than <strong>&</strong>)</li>
+                            <li><pre class='python hljs'><code>print(10 < 11 and 1 < 10)    # print True
+print(not(10 > 11))          # print True
+print(10 > 20 or 1 > 10)     # print False
+                            </code></pre></li>
+                            </ul></p>
+                        </section>
+                    </section>
+                    <section>
+                        <h3>Set Theory</h3>
+                        <section>
+                            <p><ul>
+                            <li>A <strong>set</strong> is a collection of things matching a conditions</li>
+                            <li>An item can either <strong>belongs</strong> or <strong>not belongs</strong> to a set</li>
+                            <li>Example: Set A: condition: x > 10</li>
+                            <li>When x = 11: x belongs to set A</li>
+                            <li>When x = 3: x doesn't belong to set A</li>
+                            </ul></p>
+                        </section>
+                        <section>
+                            <p><ul>
+                            <li>Like bolean logics, set theory deals with multiple sets</li>
+                            <li>There are multiple operations between to sets</li>
+                            <li><strong>union:</strong> A combined set that matches either conditions (think of <strong>OR</strong>)</li>
+                            <li><strong>intersection:</strong> A set that matches <strong>both</strong> conditions (think of <strong>AND</strong>)</li>
+                            <li><strong>difference:</strong> A set that matches one but not the other</li>
+                            </ul></p>
+                        </section>
+                        <section>
+                            <p><ul>
+                            <li>Example: Set A: x > 2. Set B: x < 4</li>
+                            <li>A <strong>union</strong> B: Means a set that has x > 2 or x < 4: All numbers</li>
+                            <li>A <strong>intersect</strong> B: Means a set contains 2 < x < 4: Only number 3</li>
+                            <li>A <strong>minus</strong> B: A sets contains all number greater than 4</li>
+                            </ul></p>
+                        </section>
+                        <section>
+                            <img data-src='data/day_03/set/set.0.jpg' />
+                        </section>
+                        <section>
+                            <img data-src='data/day_03/set/set.3.png' />
+                        </section>
+                        <section>
+                            <p><ul>
+                            <li>It's all cool...but why do we talk about this?</li>
+                            <pre class='python hljs'><code>
+if age > 18:
+    print('You are no longer in grade school')
+elif age > 15:
+    print('You are in high school')
+elif age > 10:
+    print('You are in middle school')
+elif age > 5:
+    print('You are in elementary school')
+else:
+    print('You are too young to do Python!')
+                            </code></pre></li>
+                            <li>The <strong>order</strong> matters</li>
+                            <li>How do we know the order?</li>
+                            </ul></p>
+                        </section>
+                        <section>
+                            <img data-src='data/day_03/set/set.4.png' />
+                        </section>
+                    </section>
+                    <section>
+                        <h3>Lab 03: Assignment #1</h3>
+                        <section>
+                        <p>
+                            Write a script to continuously ask the user to input a letter, then prints out a fruit you know starting with that letter.
+                            The script should ask the user up to <strong>10</strong> times.
+                            The letter is <strong>not</strong> case sentitive.
+                            Handle the error case where user enter something other than a letter. When the user enter <strong>stop</strong>, exit.
+                            A few examples fruit are: <strong>a</strong>pple, <strong>b</strong>anana, <strong>c</strong>herry.
+                        </p>
+                        </section>
+                        <section>
+                            <p>What do we need to do?
+                            <ul>
+                            <li class='fragment'>Ask user for <strong>input</strong></li>
+                            <li class='fragment'>Loop until the answer is <strong>stop</strong><span class='fragment'>, <strong>or</strong> a counter reaches 10</span></li>
+                            <li class='fragment'>Within the loop:
+                                <ul>
+                                <li class='fragment'>if the answer is "a", prints "apple"</li>
+                                <li class='fragment'>if the answer is "b", prints "banana"</li>
+                                <li class='fragment'>What kind of branch do we use? <span class='fragment'><strong>if/elif</strong></span></li>
+                                <li class='fragment'>The <strong>else</strong> branch should print an error message</li>
+                                <li class='fragment'>Don't forget to <strong>update</strong> the answer, and the counter</li>
+                                </ul>
+                            </li>
+                            </ul></p>
+                        </section>
+                    </section>
+                    <section>
+                        <h3>Lab 03: Assignment #2</h3>
+                        <section>
+                        <p>
+                            Write a script to ask the user for a number between 1 and 10, and prints out the following pattern:
+                            <pre class='python hljs'><code># If user input 4
+   *
+  **
+ ***
+****
+                            </code></pre>
+                        </p>
+                        </section>
+                        <section>
+                            <p>What do we need to do?
+                            <ul>
+                            <li class='fragment'>Ask a user for a <strong>number</strong> between 2 and 10</li>
+                            <li class='fragment'>Initialize a counter to 1, and count upto that number</li>
+                            <li class='fragment'>Determine the amount of space, and asterisks to print</li>
+                            <li class='fragment'>Build a string using "string multiplication"</li>
+                            </ul>
+                        </section>
+                    </section>
+                    <section>
+                        <h3>Lab 03: Assignment #3</h3>
+                        <section>
+                        <p>Write a script to ask the user for two numbers between 1 and 10. Then, print out the following pattern:
+                            <pre class='python hljs'><code> # If user input 7 and 3
+
+7 6 5 4 3
+7 6 5 4
+7 6 5
+7 6
+7
+                            </code></pre>
+                        </p>
+                        </section>
+                        <section>
+                        <p>Break this down to smaller problems:</p>
+                        <ol>
+                        <li class='fragment'>Ask for two numbers between 1 and 10. Determine where to start and where to end</li>
+                        <li class='fragment'>Loop, from start to end</li>
+                        <li class='fragment'>Within the loop: count, in reverse order, from end to start</li>
+                        </ol>
+                        </section>
+                        <section>
+                        <p>1. Ask for two numbers between 1 and 10, and determine where to start end where to end</p>
+                        <ul>
+                        <li>Ask for two numbers</li>
+                        <li>Validate both are between 1 and 10</li>
+                        <li>If num0 < num1: start = num0, end = num1. Reverse it otherwise</li>
+                        </ul>
+                        </section>
+                        <section>
+                        <p>2. Loop from start to end</p>
+                        <ul>
+                            <li>Initialize a counter to start</li>
+                            <li>Increment the counter by 1 every time we go through the loop</li>
+                            <li>Print out one line of the output as we go through the loop</li>
+                        </ul>
+
+                        </section>
+                        <section>
+                        <p>3. Count, in reverse order, from end to start</p>
+                        <ul>
+                        <li>Initialize another counter to end</li>
+                        <li>Build a line for output by:
+                            <ul><li>Initialize the line to an empty string</li>
+                                <li>concaternating the 2<sup>nd</sup> counter to the end of the string</li>
+                            </ul>
+                        </li>
+                        <li><strong>Decrement</strong> the counter, as we go through the inside loop</li>
+                        </ul>
+                        </section>
+                    </section>
+            </div>
+        </div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+
