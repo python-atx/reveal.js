@@ -1,0 +1,438 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+            <!-- Agenda -->
+            <section>
+                <h3>Functions and Scope</h3>
+            </section>
+            <section>
+            <h3>Functions</h3>
+                <section>
+                    <p><ul>
+                    <li>Use functions to group logic that:
+                        <ul>
+                            <li>Solve a well defined problem</li>
+                            <li>Is used repeatedly throughout the program</li>
+                        </ul>
+                    </li>
+                    <li>When describing a function: We <strong>should not</strong> have to use <strong>and</strong></li>
+                    <li>Examples: <strong>print(), input(), int(), str(), float()</strong> </li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p>Each function
+                    <ul>
+                    <li>Has a <strong>name</strong>, which is used to invoke or reference the function</li>
+                    <li><strong>May</strong> have arguments, or parameters</li>
+                    <li><strong>May</strong> have a return value or data</li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p>Syntax: <br />
+                    <pre class='python hljs'><code>def function_name(argument1, argument2):
+    statement_0
+    statement_1
+    ...
+    return
+                    </code></pre></p>
+                </section>
+                <section>
+                    <p><ul>
+                        <li>The caller <strong>calls</strong> or <strong>invoke</strong> a function</li>
+                        <li>The caller stops execution, and transfer the execution to the beginning of the function</li>
+                        <li>Once the function finishes, it <strong>returns</strong> to execute <strong>next</strong> statement of the caller</li>
+                    </ul></p>
+                </section>
+                <section><img data-src='data/functions/function_calls.png' />l</section>
+            </section>
+            <section>
+                <h3>Function names</h3>
+                <p>Similar to variables names, function names:<ul>
+                <li>Can contain alphanumeric characters, and underscore: <strong>_</strong></li>
+                <li>Can not start with a number</li>
+                <li>Can not use <strong>keywords</strong>.</li>
+                <li><strong>Should not</strong> use built in function names
+                    <ul><li>You can use built-in functions, but you are overwriting their behavior</li></ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <h3>Arguments</h3>
+                <section>
+                    <p><ul>
+                    <li>Arguments are <strong>optional</strong></li>
+                    <li>They are variables, or values, passed to the function by its caller</li>
+                    <li>A function <strong>usually</strong> has a <strong>fixed</strong> number of arguments</li>
+                    <li>Then, it <strong>must</strong> be invoked with exactly the same number of arguments</li>
+                    <li>These are called <strong>positional arguments</strong></li>
+                    <li>The order determine the name and value of the arguments</li>
+                    </ul></p>
+                    <pre class='python hljs'><code>def add_them(x, y, z):
+    print('total is:', x + y + z)
+
+add_them(1, 2)      # error! must provide 3 arguments when calling the function
+add_them(1, 2, 10)  # Ok, print out total is: 13
+                    # x is 1, y is 2, z is 10
+add_them(2, 1, 10)  # x is 2, y is 1, z is 10, print out total is: 13
+                    </code></pre>
+                </section>
+                <section>
+                    <p><ul><li>Arguments can have <strong>default value</strong></li></ul></p>
+                    <pre class='python hljs'><code>def add_them(x, y, z=10):
+    print('total is:', x + y + z)
+add_them(1, 2)      # No error, prints out: total is: 13
+add_them(1, 2, 3)   # No error, prints out: total is: 6
+add_them(1, 2, 3, 4)# Error!
+                    </code></pre>
+                </section>
+                <section>
+                    <p><ul>
+                        <li>A function <strong>may</strong> support unlimited number of arguments</li>
+                        <li>The caller <strong>can</strong> pass as many arguments as it wants to</li>
+                        <li>Example:
+                            <pre class='python hljs'><code>def add_them(*arguments):
+    # arguments is a named tuple of all the arguments
+    # use len(arguments) to decide how many arguments are passed
+    total = 0
+    for n in arguments:
+        total = total + n
+    print('Total is:', total)
+add_them(1)
+add_them(1, 2, 3)
+add_them(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                            </code></pre>
+                        </li>
+                        <li>We are <strong>not</strong> passing a list or tuple as an argument</li>
+                        <li>We are passing 1, 3, 10 different arguments to the function</li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p><ul>
+                        <li>A function be invoked with <strong>keyword arguments</strong></li>
+                        <li>Example:
+                            <pre class='python hljs'><code>def add_them(x, y):
+    print('result is:', x + y*2)
+
+add_them(1, 2)          # result is 5
+add_them(x=2, y = 3)    # result is 8
+add_them(y=3, x=2)      # result is 8
+                            </code></pre>
+                        </li>
+                        <li>When using <strong>keyword arguments</strong>, the <strong>order does not matter</strong></li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p><ul>
+                        <li>A function may support unlimited number of keyword arguments</li>
+                        <li>Example:
+                            <pre class='python hljs'><code>def name(**keyword_arguments):
+    # keyword_arguments is a dictionary of arguments
+    for k in keyword_arguments:
+        print(k, '->', keyword_arguments[k], type(keyword_arguments[k]))
+
+name(x=1, y=2.0, z='three')
+args = {'x': 1, 'y': 2.0, 'z': 'three'}
+name(args) # ERROR !
+name(arguments=args) # Ok, print keyword_arguments becomes 'arguments': dictionary
+                            </code></pre>
+                        </li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p><ul>
+                    <li>By convention, list of <strong>positional arguments</strong> is named <strong>*args</strong></li>
+                    <li>List of <strong>keyword arguments</strong> is named <strong>**kwargs</strong></li>
+                    <li>Keyword arguments <strong>must</strong> come <strong>after</strong> positional arguments if they are available</li>
+                    </ul></p>
+                    <pre class='python hljs'><code>def add_them(x, y, z):
+    print('result is:', x + y + z*2)
+add_them(1, 2, 3)           # Ok
+add_them(1, 2, z=3)         # Ok
+add_them(1, y=2, z=3)       # Ok
+add_them(1, z=3, y=2)       # Ok
+add_them(x=1, y=2, z=3)     # Ok
+add_them(y=2, z=3, 1)       # ERROR
+                    </code></pre>
+                </section>
+            </section>
+            <section>
+                <h3>Return</h3>
+                <section>
+                    <p><ul>
+                    <li>A function can <strong>optionally</strong> return some data</li>
+                    <li>It can be a True/False flag to indicate successful/unsucessful operation</li>
+                    <li>It can be a result calculated from the arguments</li>
+                    <li>Without any <strong>return</strong> statement, a function returns <strong>None</strong></li>
+                    <li>When Python sees a <strong>return</strong> statement, it stops the current function and <strong>returns</strong> to the caller</li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p>Example: Write a function to print out a greeting</p>
+                    <pre class='python hljs'><code>def print_greeting(name):
+    print('This is my fancy greeting:')
+    print('---------------------------------')
+    print('>>> Hello,', name)
+    print('---------------------------------')
+
+print_greeting('Nancy')
+x = print_greeting('Tom')
+print(x)
+n = input('Enter your name: ')
+print_greeting(n)
+                        </code></pre>
+                </section>
+                <section>
+                    <p>Example: Write a function to check if a user's age is valid for high school a student's age</p>
+                    <pre class='python hljs'><code>def is_valid_highschool_age(age):
+    if age > 18 or age < 14:
+        return False
+    return True
+is_valid_highschool_age(10)         # nothing happens, although function run
+is_valid = is_valid_highschool_age(17)
+print(is_valid)                     # print True
+if is_valid_highschool_age(21):
+    print('You are in highschool')
+else:
+    print('You are not in highschool')  # This one gets printed
+                    </code></pre>
+                </section>
+                <section>
+                    <p>Example: Write a function to calculate the sum of all numbers between 1 and the specified number</p>
+                    <pre class='python hljs'><code>def calculate_total(maxnumber):
+    if maxnumber <= 1:
+        return None                                 # Indicate an error
+    total = 0
+    for n in range(1, maxnumber):
+        total = total + n
+    return total
+
+bad_total = calculate_total(-2)
+print(bad_total)                                    # print None
+total_upto_10 = calculate_total(10)
+print('Total of 1 ... 10 is', total_upto_10)        # print 45
+print('Total of 1 ... 25 is', calculate_total(25))  # print 300
+                    </code></pre>
+                </section>
+            </section>
+            <section>
+                <h3>Scope</h3>
+                <section>
+                    <p><ul>
+                        <li>When working with functions, we have to think about variable <strong>scope</strong></li>
+                        <li>A scope tells where a variable is <strong>meaningful</strong></li>
+                        <li>A variable defined within a function has the <strong>local scope</strong></li>
+                        <li>The variable is visible, and accessible, throughout the function</li>
+                        <li>The caller does not <strong>"see"</strong> the variable</li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p>For example:</p>
+                    <pre class='python hljs'><code>def func(x):
+    y = x + 5           # y is "local" to func
+    print(y)            # y is "visible"
+
+func(10)                # prints 15, which is y
+print(y)                # error: y is not "visible" to the caller
+                    </code></pre>
+                </section>
+                <section>
+                    <p><ul>
+                        <li>The "callee" does not see the "caller" variables either</li>
+                        <li>To give the callee variable, the caller passed them as <strong>arguments</strong></li>
+                    </ul></p>
+                    <pre class='python hljs'><code>def foo():
+    f = 10
+    bar()
+
+def bar():
+    print(f)    # Error, I don't know what f is, even if my caller knows
+
+foo()
+                        </code></pre>
+                </section>
+                <section>
+                    <p><ul>
+                        <li>The callee and the caller my use the same name for a variable</li>
+                        <li>But, since they have different scope, they are different</li>
+                    </ul></p>
+                    <pre class='python hljs'><code>def foo():
+    x = 10
+    bar()
+    print('in foo, x is', x)
+
+def bar():
+    x = 11
+    print('in bar, x is', x)
+
+foo()
+                    </code></pre>
+                </section>
+            </section>
+            <section>
+                <h3>Global scope</h3>
+                <section>
+                    <p><ul>
+                        <li>If a variable is assigned the script, it has a <strong>global scope</strong></li>
+                        <li>A function within the script can <strong>access</strong> a <strong>global variable</strong>
+                    <pre class='python hljs'><code>def foo():
+    print('x is', x)
+x = 10
+foo()       # print x is 10
+                    </code></pre></li>
+                    <li>x must be assigned <strong>before</strong> foo() is called
+                        <pre class='python hljs'><code>def foo():
+    print('x is', x)
+foo()       # Error! Don't know what x is
+x = 10
+                        </code></pre>
+                    </li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p><ul>
+                    <li>What happens if we try to assign values to global variables?
+                        <pre class='python hljs'><code>def foo():
+    x = 11
+x = 10
+foo()
+print('x is', x)        # What is the value of x?
+                        </code></pre>
+                    </li>
+                    <li class='fragment'>prints "x is 10".....why?</li>
+                    <li class='fragment'>Within foo(), Python thinks we are defining and using a <strong>local</strong> variable named x</li>
+                    </ul></p>
+                </section>
+                <section>
+                    <p><ul>
+                    <li>To tell Python to use a global variable, we use the <strong>global</strong> keyword</li>
+                    </ul></p>
+                    <pre class='python hljs'><code>def foo():
+    global x            # Python! x is a global variable
+    x = 11
+x = 10
+foo()
+print('x is', x)    # This time, prints 11
+                    </code></pre>
+                </section>
+                <section>
+                    <p><ul>
+                    <li>Using <strong>global variable</strong> is strongly <strong>discouraged</strong></li>
+                    <li>If used through out a large project, its value may be changed by some functions without our knowledge</li>
+                    <li>This usually leads to obscure bugs</li>
+                    <li>Instead, pass the variable as an argument when you know its value may change</li>
+                    </ul></p>
+                </section>
+            </section>
+            <section>
+                <h3>Recursion</h3>
+                <section>
+                    <p><ul>
+                    <li>Happens when a function <strong>eventually calls itself</strong></li>
+                    <li>It is a kind of <strong>loop</strong></li>
+                    <li>The function <strong>must</strong> have an exit condition, else it leads to <strong>infinite loop</strong></li>
+                    </ul></p>
+                    <pre class='python hljs'><code>def print_reverse_from(num):
+    print(num)
+    prev_num = num - 1
+    if prev_num > 0:                    # What if this check is not here?
+        print_reverse_from(prev_num)
+print_reverse_from(10)
+
+
+                    </code></pre>
+                </section>
+                <section>
+                    <p><ul>
+                        <li>Recursion may happens after multiple calls "layers"</li>
+                        <li>This makes it much harder to detect and debug</li>
+                    </ul></p>
+                    <table>
+                        <tr><td>
+                            <pre class='python hljs'><code>def f0(x):
+    if x > 0:
+        f1(x+1)
+    elif x < 0:
+        f1(x-1)
+    else:
+        f1(x)
+                            </code></pre>
+                        </td>
+                        <td>
+                            <pre class='python hljs'><code>def f1(x):
+    if x > 0:
+        print(x)
+    else:
+        f2(x - 1)
+                            </code></pre>
+                        </td>
+                        <td>
+                            <pre class='python hljs'><code>def f2(x):
+    if x == -1:
+        f0(x+1)
+    print(x)
+                            </code></pre>
+                        </td>
+                    </tr>
+                    </table>
+                        <pre class='python hljs'><code>
+f0(1)           # print 2
+f0(2)           # print 3
+f0(-1)          # print -3
+f0(-2)          # print -4
+f0(0)           # infinite loop
+                        </code></pre>
+                </section>
+                <section>
+                    <p><ul>
+                    <li>In general, recursion is <strong>discouraged</strong></li>
+                    <li>Calling many functions has performance implication</li>
+                    <li>Sometimes, recursion is the <strong>cleanest</strong> method to solve a (math) problem</li>
+                    <li>But, it is generally better to use <strong>loops</strong> to solve the same problem</li>
+                    </ul></p>
+                </section>
+            </section>
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+
