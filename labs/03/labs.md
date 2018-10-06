@@ -1,12 +1,12 @@
 # Assignment #1:
-Write a script to continously ask the current user to enter a series of numbers.
+Write a script to continuously ask the current user to enter a series of numbers.
 The script should stop asking when the user enter 'done'. Once done, print out
 all the numbers that was entered. Also, print out the largest and smallest
 number, as well as the sum of all the numbers.
 
 
 # Assignment #2:
-Write a script to continously ask the user to enter his or her favoriate
+Write a script to continuously ask the user to enter his or her favoriate
 restaurants's names, and his/her own rating from 1 to 10. Once the user enter
 'done', print out the following:
 - The most favorite restaurant.
@@ -38,5 +38,5 @@ Write a script to list all the words in a string provided by the user.
 Write a script to ask the current user for a string. Then, within a loop, ask
 the user for a character, and print out all the words starting with that
 character that you see in the previous string. The loop ends when the user enter
-anything other than a chracter.
+anything other than a characters.
 
