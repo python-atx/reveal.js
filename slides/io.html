@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+        <section>
+            <h3>Input/Output (IO)</h3>
+        </section>
+        <section>
+            <h3>Output</h3>
+            <section>
+                <p><ul>
+                <li>We already know <strong>print()</strong></li>
+                <li>Let's explore a little bit more about <strong>format string</strong></li>
+                <li>It's a <strong>string</strong>, but it is <strong>formated</strong></li>
+                <li>For example:
+                    <pre class='python hljs'><code>s = 'Your name is %s, you are %d years old' % (name, age)</code></pre>
+                </li>
+                <li><strong>%s</strong> will be replaced with the <strong>string</strong> value of <strong>name</strong></li>
+                <li><strong>%d</strong> will be replaced with the <strong>integer</strong> value of <strong>age</strong></li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Using the <strong>%</strong> character for format string is the old method</li>
+                <li>It is not recommended, but still widely used due to it being quite simple and easy to understand</li>
+                <li>The <strong>new</strong> method is to use the <strong>format()</strong> function</li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>For example:
+                    <pre class='python hljs'><code>s = 'Your name is {} and you are {} years old'.format(name, age)</code></pre>
+                </li>
+                <li><strong>format()</strong> function takes <strong>positional arguments</strong></li>
+                <li>It replace <strong>{}</strong> with the arguments</li>
+                <li>The argument does not have to appear in order:
+                    <pre class='python hljs'><code>print('{0} and {1}'.format('ham', 'cheese'))        # print 'ham and cheese'
+print('{1} and {0}'.format('ham', 'cheese'))        # print 'cheese and ham'
+                    </code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li><strong>format()</strong> also takes <strong>keyword arguments</strong></li>
+                <li>For example:
+                    <pre class='python hljs'>s = 'Your name is {name} and you are {age} years old'.format(name='Jon', age=20')
+print(s)        # print: Your name is Jon and you are 20 years old
+                    </pre>
+                </li>
+                <li>What if I want to print a curly bracket?</li>
+                <li>Answer: double curly
+                    <pre class='python hljs'><code>print('Hello {{ {} }}'.format('Tom')) # print: Hello { Tom }</code></pre>
+                </li>
+                </ul></p>
+            </section>
+        </section>
+        <section>
+            <h3>File IO</h3>
+            <section>
+            <p><ul>
+            <li>So far we learned how to get user input using <strong>input()</strong></li>
+            <li>How can we read from a file?</li>
+            <li>Use the <strong>open()</strong> function</li>
+            </ul></p>
+        </section>
+        <section>
+            <p><ul>
+            <li>Syntax:
+                <pre class='python hljs'><code>f = open(path_to_file, mode)</code></pre>
+            </li>
+            <li><strong>path_to_file</strong>: Path to the file you would like to open</li>
+            <li><strong>mode</strong>: There are many. The common ones are:
+                <ul>
+                <li><strong>'r'</strong>: read only, as a text file</li>
+                <li><strong>'rb'</strong>: read only, as a binary file</li>
+                <li><strong>'r+'</strong>: read only, as a text file, create the file if it does not exist</li>
+                <li><strong>'rb+'</strong>: read only binary file, create if it does not exist</li>
+                <li><strong>'w'</strong>: open to write</li>
+                <li><strong>'w+'</strong>: open to write, create if does not exist</li>
+                <li><strong>'a'</strong>: open to append (write at the end)</li>
+                </ul>
+            </li>
+            <li><strong>always</strong> close the file after we are done!</li>
+            </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>After you open, you can use <strong>f.read()</strong> function to read <strong>all content</strong> as a string</li>
+                <li>You can pass an argument like <strong>f.read(20)</strong> to read 20 items from the current position</li>
+                <li>You can use <strong>f.seek(10)</strong> to "move" to position "10" into the file before reading</li>
+                <li>You can ues <strong>f.tell()</strong> to get the current position within the file</li>
+                <li>Use <strong>f.close()</strong> to close the file</li>
+                </ul></p>
+            </section>
+            <section>
+                <p>Example:
+                <ul>
+                    <li>Let's say you have the following file: test.txt
+                        <pre><code>This is a test
+This is a test 2
+                        </code></pre>
+                    </li>
+                    <li>Let's try to read its content:
+                        <pre class='python hljs'><code>f = open('test.txt', 'r')
+print(f.read())     # print "This is a test" and "This is a test 2"
+print(f.read())     # print nothing!
+f.seek(5)
+print(f.read(5))    # print "is a "
+                        </code></pre>
+                    </li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Instead of reading bytes/characters at a time and process them, we can ask Python to read one line at a time</li>
+                <li>Using the <strong>readline()</strong> function
+                    <pre class='python hljs'><code>f = open('test.txt', 'r')
+print(f.readline())         # print "This is a test"</code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>You can also treat the file as a <strong>collection</strong></li>
+                <li>And use <strong>for</strong> loop to iterate through lines:
+                    <pre class='python hljs'><code>f = open('test.txt', 'r')
+for line in f:
+    print(l)</code></pre>
+                </li>
+                <li>Sometimes, you must <strong>strip()</strong> special characters at the end of the line (a new line)</li>
+                <li>It is common to see this:
+                    <pre class='python hljs'><code>for line in f:
+    l = line.strip()
+    do_something_with_a_line(l)
+                    </code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p>Example: Given a file containing all attendees' names, one per line, write a program to welcome the class</p>
+                <pre class='python hljs'><code>
+filename = input('What is the name of the file? ')
+f = open(filename, 'r')
+for line in f:
+    name = line.strip()             # Tome\n becomes Tom
+    print('Welcome {} to the Python class'.format(name))
+f.close()
+                </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>Similar to read() and readline(), you can <strong>write()</strong> and <strong>writelines()</strong> to a file</li>
+                <li>When using <strong>write()</strong>, Python does not automatically add the newline</li>
+                <li>You may have to use <strong>write('{}\n'.format(text)</strong> to force a new line</li>
+                <li>When using <strong>writelines()</strong>, the argument is a <strong>list</strong> of lines to write to a file</li>
+                <li>As always, you must <strong>close</strong> the file after writing</li>
+                </ul></p>
+            </section>
+        </section>
+        <section>
+            <h3>Examples</h3>
+            <section>
+                <p>Read a file name "input.txt". Then, write every line that contains a number to an "output.txt" file</p>
+                <pre class='python hljs'><code>def is_line_contains_number(l):
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    for number in numbers:
+        if number in l:
+            return True
+    return False
+f = open('input.txt', 'r')
+output = list()
+for line in f:
+    l = line.strip()
+    if is_line_contains_number(l):
+        output.append(line)         # keep the newline in the output
+f.close()
+f = open('output.txt', 'w+')
+f.writelines(output)
+                </code></pre>
+            </section>
+        </section>
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+
+

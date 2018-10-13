@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+        <section>
+            <h3>Modules and packages</h3>
+        </section>
+        <section>
+            <h3>Modules</h3>
+            <section>
+                <p><ul>
+                <li>Functions are used to share and reuse code within a file</li>
+                <li>But how do we share code across multiple files?</li>
+                <li>We can <strong>import</strong> another python file (or <strong>module</strong>)</li>
+                <li>Use the dot (<strong>.</strong>) to reference global functions and variables from another <strong>module</strong></li>
+                </ul></p>
+            </section>
+            <section>
+                <p>For example: <strong>coutner.py</strong></p>
+                <pre class='python hljs'><code>MIN_NUMBER = 5
+def count_upto(number):
+    # count from 1 upto the specified number
+    if number < MIN_NUMBER:
+        print('Error: number must be larger than', MIN_NUMBER)
+        return
+    print('Counting:')
+    for num in range(1, number):
+        print(num)
+    return
+                </code></pre>
+            </section>
+            <section>
+                <p>Within another python file, like <strong>test_counter.py</strong></p>
+                <pre class='python hljs'><code>import counter
+print('Smallest number to count up to is', counter.MIN_NUMBER)
+counter.count_upto(10)
+counter.count_upto(3)       # prints an error
+                </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>You don't have to import the entire module</li>
+                <li>You can import only the functions or variables that you need</li>
+                <li>The imported functions/variables are available in the current file as if they are defined here</li>
+                <li>You do not need to use the "dot" notation</li>
+                <li>For example:
+                    <pre class='python hljs'><code>from counter import MIN_NUMBER, count_upto
+count_upto(5)       # you do not need module name and the dot notation
+                    # MIN_NUMBER is not used
+                    </code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>You can also modify the imported <strong>names</strong> to avoid name collision</li>
+                <li>Example:
+                    <pre class='pyhton hljs'><code>from counter import count_upto as xyz
+def count_upto(num):
+    print('I dont know how to count....')
+
+count_upto(10)
+xyz(10)
+                    </code></pre>
+                </li>
+                <li>or:
+                    <pre class='python hljs'><code>import counter as c      # maybe it takes too long to type "counter"
+c.count_upto(10)
+                    </code></pre>
+                </li>
+                </ul></p>
+            </section>
+        </section>
+        <section>
+            <h3>Modules (cont.)</h3>
+            <section>
+                <pre class='python hljs'><code>MIN_NUMBER = 5
+def count_upto(number):
+    # count from 1 upto the specified number
+    if number < MIN_NUMBER:
+        print('Error: number must be larger than', MIN_NUMBER)
+        return
+    print('Counting:')
+    for num in range(1, number):
+        print(num)
+    return
+                </code></pre>
+                <p><ul>
+                    <li>But...we can not execute <strong>counter.py</strong> by itself</li>
+                    <li>counter.py does <strong>not</strong> contain any executable code</li>
+                    <li>counter.py simply define functions and variables</li>
+                </ul></p>
+
+            </section>
+            <section>
+
+
+                <li>What if we add some executable code to counter.py?</li>
+                </ul></p>
+                <pre class='python hljs'><code>MIN_NUMBER = 10
+def count_upto(number):
+    if number < MIN_NUMBER:
+        print('Error: Number must be larger than', MIN_NUMBER)
+        return
+    print('Counting')
+    for num in range(1, number):
+        print(num)
+    return
+print('This is counter module! Don not run it, import it only')
+                </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>When we try to run counter.py, we see the message recommending us to import the module</li>
+                <li>But, when we try to import counter.py, we also see the same message</li>
+                <li><strong>Meaning</strong>: Python will try to execute the imported module.</li>
+                <li>There must be a way to check if the current module is imported, or executed</li>
+                <li class='fragment'>Compare a built-in variable <strong>__name__</strong> against <strong>__main__</strong></li>
+                <li class='fragment'>If equal: module is executed, else, it is imported</li>
+                </ul></p>
+            </section>
+            <section>
+                <p>Updated counter.py</p>
+                <pre class='python hljs'><code>MIN_NUMBER=10
+def count_upto(number):
+    if number < MIN_NUMBER:
+        print('Error: Number must be larger than', MIN_NUMBER)
+        return
+    print('Counting')
+    for num in range(1, number):
+        print(num)
+    return
+if __name__ == '__main__':
+    print("Error: This is a module, don't try to run it. Try importing it instead!")
+                </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>After we import module <strong>x</strong>, how do we know what variables or functions are available within x?</li>
+                <li class='fragment'>We can read <strong>documentation</strong>... This is the best method</li>
+                <li class='fragment'>Or we can use <strong>help(x)</strong>. This is interactive, and help us read the built-in documentation</li>
+                <li class='fragment'>Or we can use <strong>dir(x)</strong> to list all names within x</li>
+                </ul></p>
+            </section>
+        </section>
+        <section>
+            <h3>Package</h3>
+            <section>
+                <p><ul>
+                <li>Multiple python files and modules made a python <strong>package</strong></li>
+                <li>Python packages help organize large python projects</li>
+                <li>A python package is a directory containing the <strong>modules</strong></li>
+                <li>It <strong>must</strong> contains an <strong>__init__.py</strong> file</li>
+                </ul></p>
+                <pre class='python hljs'><code>
+my_package:                 # a directory containing files and sub dirs
+    __init__.py             # __init__.py makes it a my_package package
+    number:                 # it contains a sub package: number
+        __init__.py
+        counter.py          # number contains counter, and math modules
+        math.py
+    string:                 # string contain encrypt, decrypt, and secret modules
+        __init__.py
+        encrypt.py
+        decrypt.py
+        secret.py
+
+                </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>At the top level, you can import counter by:
+                    <pre class='python hljs'><code>from my_package.number import counter</code></pre>
+                </li>
+                <li>or, import the do_encrypt() function within the encrypt module
+                    <pre class='python hljs'><code>from my_package.string.encrypt import do_encrypt</code></pre>
+                </li>
+                <li>or, use the do_decrypt() function within the decrypt module
+                    <pre class='python hljs'><code>import my_package
+my_package.string.decrypt.do_decrypt()</code></pre>
+                </li>
+                <li><strong>Recommendation</strong>: Import the lowest-level module, and use the dot notation to access variables and functions:
+                    <pre class='python hljs'><code>from my_package.number import coutner
+counter.count_upto(10)
+                    </code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Within the <strong>string.encrypt</strong> module, you can reference other modules within the same package by:
+                    <pre class='python hljs'><code>from .secret import secret_key  # secret_key is defined within secret module</code></pre>
+                </li>
+                <li>You can also import another module from number:
+                    <pre class='python hljs'><code>from ..number import math</code></pre>
+                </li>
+                <li>To go up more <strong>levels</strong>, add more <strong>dots</strong></li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>When you import a module within a package, you also import that package</li>
+                <li>If the <strong>__init__.py</strong> contains executable code, Python will run it</li>
+                <li><strong>__init__.py</strong> is usually empty, but not always</li>
+                </ul></p>
+            </section>
+        </section>
+        <section>
+            <h3>Common modules</h3>
+            <section>
+                <p><ul>
+                    <li>Module: <strong>os</strong></li>
+                    <li>Provide Operating System related features</li>
+                    <li>Also provide</li>
+                    <li>Common functions:
+                        <ul>
+                            <li><strong>os.getcwd()</strong>, <strong>os.chdir()</strong>: get current dir., or change directory</li>
+                            <li><strong>os.system()</strong>, <strong>os.execve()</strong>: execute a command</li>
+                            <li><strong>os.listdir()</strong>, <strong>os.walk()</strong>: list directories and files</li>
+                            <li><strong>os.kill()</strong>: stop another process</li>
+                            <li><strong>os.remove()</strong>, <strong>os.rmdir()</strong>: delete files and directories</li>
+                        </ul>
+                    </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                    <li>Module: <strong>shutil</strong></li>
+                    <li>high level files and directories management</li>
+                    <li>Common functions:
+                        <ul>
+                            <li><strong>shutil.copy()</strong>, <strong>shutil.copytree</strong>: copy files, or directories</li>
+                            <li><strong>shutil.move()</strong>: move files and directories</li>
+                            <li><strong>shutil.disk_usage()</strong>: get disk usage</li>
+                            <li><strong>shutil.rmtree()</strong>: remove directory tree</li>
+                        </ul>
+                    </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Module: <strong>sys</strong></li>
+                <li>Provide system level functionalities</li>
+                <li>Common functions, and variables:
+                    <ul>
+                        <li><strong>sys.argv</strong>: list of command line argument</li>
+                        <li><strong>sys.modules</strong>: list of loaded modules</li>
+                        <li><strong>sys.version</strong>: Python version</li>
+                        <li><strong>sys.platform</strong>: Am I Windows, Mac, or Linux?</li>
+                        <li><strong>sys.exit()</strong>: Exit the current script</li>
+                    </ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Module: <strong>datetime</strong></li>
+                <li>Provide date and time features</li>
+                <li>Common functions:
+                    <ul>
+                    <li><strong>datetime.date.today()</strong>: Get today</li>
+                    <li><strong>datetime.datetime.now()</strong>: Current date, and time</li>
+                    <li><pre class='python hljs'><code>now = datetime.datetime.now()
+print(now.year, now.day, now.month, now.hour, now.minute, now.seconds)
+                    </code></pre></li>
+                    </ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Module: <strong>random</strong></li>
+                <li>Provide random-related features, not...random features</li>
+                <li><strong>random</strong> module is <strong>NOT</strong> cryptographically safe!</li>
+                <li>Meaning: do not use <strong>random</strong> module for crypto stuffs</li>
+                <li>Common functions:
+                    <ul>
+                        <li><strong>random.choice(items)</strong>: Given a list, randomly pick an item</li>
+                        <li><strong>random.random(20)</strong>: Get a random number between 0 - 20</li>
+                        <li><strong>random.random()</strong>: Get a random float number</li>
+                    </ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Python provides many more modules, and standard libraries</li>
+                <li>You can also install additional libraries</li>
+                <li>As always, please refer to <strong>documentation</strong> for more details</li>
+                </ul></p>
+            </section>
+        </section>
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+
+
