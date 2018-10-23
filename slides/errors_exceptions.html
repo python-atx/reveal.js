@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+        <section>
+            <h3>Errors and Exceptions</h3>
+        </section>
+        <section>
+            <h3>Errors</h3>
+            <section>
+                <p><ul>
+                <li>Errors are unexpected events</li>
+                <li>For example: <strong>int(</strong>x<strong>)</strong>: What if x is not a number</li>
+                <li>What options does function <strong>int()</strong> have?
+                    <ol>
+                    <li class='fragment'>Return a special error value (like <strong>None</strong>)</li>
+                    <li class='fragment'>Gives up and tell us that there is an <strong>exception</strong></li>
+                    </ol>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>To handle errors, our function needs to <strong>validate</strong> input</li>
+                <li>If validation fails: return an error result (None, -1, '', etc)</li>
+                <li>Our caller also has to <strong>validate</strong> the return value</li>
+                <li>For example:</li>
+                </ul></p>
+                <pre class='python hljs'><code>def convert_to_number(some_string):
+    digits = set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
+    for c in some_string:
+        if c not in digits:
+            return None
+    return int(some_string)
+
+n = convert_to_number(input('Please enter a number: '))
+if n is not None:
+    print('The number is {}'.format(n))
+else:
+    print('Invalid input')
+                </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>Return value is <strong>always</strong> validated before use</li>
+                <li>Even if the <strong>input</strong> is valid</li>
+                </ul></p>
+            </section>
+        </section>
+        <section>
+            <h3>Exceptions</h3>
+            <section>
+                <p><ul>
+                <li>Another approach to handling errors is to use <strong>exceptions</strong></li>
+                <li>When validation fails, <strong>raise</strong> an <strong>exception</strong> to let someone else know</li>
+                <li>For example:</li>
+                </ul></p>
+                <pre class='python hljs'><code>def convert_to_number(some_string):
+    digits = set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
+    for c in some_string:
+        if c not in digits:
+            raise ValueError("Hey, I only want digits!")
+    return int(some_string)
+
+n = convert_to_number(input('Please enter a number: '))
+print('The number is {}'.format(n))</code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>The caller does <strong>not</strong> need to validate the result</li>
+                <li>If the function finishes, there are no errors</li>
+                <li>If there are errors, Python sees <strong>raise</strong>:
+                    <ul>
+                    <li>It stops running</li>
+                    <li>It looks for <strong>exception handlers</strong></li>
+                    </ul>
+                <li>If no handlers are available, Python runs the <strong>default exception handler</strong>:
+                    <ul>
+                    <li>which stops and prints out an error message</li>
+                    </ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <pre class='python hljs'><code>Please enter a number: a
+Traceback (most recent call last):
+    File "test.py", line 8, in < module >
+        n = convert_to_number(input('Please enter a number: '))
+    File "test.py", line 5, in convert_to_number
+        raise ValueError("Hey! I only want digits!")
+ValueError: Hey! I only want digits!
+                        </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>The caller <strong>should</strong> handle any <strong>anticipated</strong> exceptions</li>
+                <li>When handling exception, we <strong>should</strong> be as <strong>explicit</strong> as possible</li>
+                <li>Meaning: Only handle exceptions you know how to handle</li>
+                <li>Python offers <strong>try/except</strong> syntax</li>
+                <li>For example:
+                    <pre class='python hljs'><code>try:
+    do_some()   # May cause an exception
+except ValueError as value_error_exception:
+    handle_value_error()
+except RuntineError as rt_exception:
+    print('There is a runtime error exception, but we got it: {}'.format(rt_exception))</code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>After the <strong>except</strong> clause, you <strong>may</strong> also have an <strong>else</strong> clause</li>
+                <li><strong>else</strong> clause <strong>only</strong> run when there is no exceptions</li>
+                </ul></p>
+                <pre class='python hljs'><code>try:
+    n = convert_to_number(userinput)
+except ValueError:
+    print('Bad input!')
+else:
+    print('You entered {}'.format(n))
+                </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>You <strong>may</strong> also have a <strong>finally</strong> cause</li>
+                <li><strong>finally</strong> clause <strong>always</strong> run, regardless wether eceptions happen or not</li>
+                </ul></p>
+                <pre class='python hljs'><code>try:
+    n = convert_to_number(input('Please enter a number: '))
+except ValueError as ve:
+    print('Got an exception: {}'.format(ve))
+else:
+    print('You entered {}'.format(n))
+finally:
+    print('done!')</code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>Avoid handle <strong>all</strong> exception</li>
+                <li>You can handle all exception by:
+                    <pre class='python hljs'><code>try:
+    do_something()
+except:     # handle all kind of exceptions
+    print('There is an exception')
+    print("I don't know what it is..."
+    print("but i handle it anyways...") # DONT DO THIS
+                    </code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Exceptions and handlers are <strong>chained</strong></li>
+                <li>Let's say A calls B calls C, which raises an exception E</li>
+                <li>Python checks, in order:
+                    <ol>
+                    <li>Does B have an exception handler for X? If yes, run it</li>
+                    <li>Does A have an exception handler for X? If yes, run it</li>
+                    <li>Execute Python default handler for X</li>
+                    </ol>
+                </li>
+                <li>Therefore, you don't always have to handle an exception</li>
+                <li>But, you <strong>should</strong></li>
+                </ul></p>
+            </section>
+        </section>
+        <section>
+            <h3>Errors vs. Exceptions</h3>
+            <section>
+            <p><ul>
+            <li>Errors are <strong>clean</strong>
+                <ul>
+                <li>But, we need a <strong>special</strong> return value for error</li>
+                <li>And the return value is always <strong>validated</strong></li>
+                </ul>
+            </li>
+            <li>Exceptions assume everything goes smoothly
+                <ul>
+                    <li>until something bad happens</li>
+                    <li>Exception handling is expensive </li>
+                    <li>but it does not happen often</li>
+                </ul>
+            </li>
+            </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>It's a matter of style</li>
+                <li>I personally prefer errors</li>
+                <li>But check in with the project/community you contribute to</li>
+                <li>Either way, do <strong>not</strong> mix styles</li>
+                </ul></p>
+            </section>
+        </section>
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+
+

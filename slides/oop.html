@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+        <section>
+            <h3>Object Oriented Programming (OOP)</h3>
+        </section>
+        <section>
+            <h3>OOP theory</h3>
+            <section>
+                <p><ul>
+                <li>OOP: Programming methodology based on <strong>classes</strong> and <strong>objects</strong></li>
+                <li>Most programming problems are solved using functions/procedures/methods and data</li>
+                <li>The methods and data are closely related to a well defined problem</li>
+                <li>For example:
+                    <ul>
+                    <li>Calculate a person tax</li>
+                    <li><strong>Data</strong>: income, deductibles, investments, etc</li>
+                    <li><strong>Methods</strong>: tax rate based on income, percentage of return on investment, etc</li>
+                    <li>Calling tax methods with tax data to calculate <strong>individual tax</strong></li>
+                    </ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>OOP suggests we redesign our program around <strong>individual tax</strong></li>
+                <li>Create a <strong>class</strong> called <strong>IndividualTax</strong></li>
+                <li>The class contains generic variables, and functions</li>
+                <li>We then create a specific <strong>instance</strong> of a class, called an object</li>
+                <li>For example: <strong>my_tax</strong> is an <strong>instance</strong> of <strong>IndividualTax</strong> class</li>
+                <li><strong>my_tax</strong> contains <strong>specific</strong> values for each variable</li>
+                <li><strong>my_tax</strong> uses the same <strong>methods</strong> available in the IndividualTax</li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>All classes have a <strong>constructor</strong> and <strong>destructor</strong></li>
+                <li>Constructor initializes data as the object is <strong>instantiated</strong>, or created</li>
+                <li>Destructor clean things up as the object is <strong>deleted</strong></li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                    <li>Classes provides <strong>encapsulation</strong></li>
+                    <li>Class data (variables) can be hidden and isolated from the public (similar to variable scope) </li>
+                    <li>A class can provide <strong>getter</strong> and <strong>setter</strong> to <strong>get</strong> and <strong>set</strong>
+                        its data.
+                    </li>
+                    <li>This provide validation and protection for the class data</li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Classes have <strong>inheritance</strong>: A class can be a child of another class</li>
+                <li>The <strong>sub-class</strong> inherits <strong>super-class</strong> methods and data</li>
+                <li>The <strong>super-class</strong> does NOT have access to the <strong>sub-class</strong> methods and data</li>
+                </ul></p>
+            </section>
+            <section>
+                <p>For example:
+                    <ul>
+                        <li>A <strong>Vehicle</strong> class has a variable <strong>color</strong></li>
+                        <li>A <strong>Car</strong> class is a <strong>sub-class</strong> of <strong>Vehicle</strong>.
+                            <ul>
+                                <li>It has access to <strong>color</strong> variable</li>
+                                <li>It has a variable <strong>nbr_of_doors</strong></li>
+                                <li><strong>Vehicle</strong> does NOT have access to <strong>nbr_of_doors</strong></li>
+                            </ul>
+                        </li>
+                        <li>A <strong>Bicycle</strong> is also a <strong>sub-class</strong> of Vehicle
+                            <ul>
+                                <li>It also have access to <strong>color</strong> variable</li>
+                                <li>It does NOT have access to the Car's <strong>nbr_of_doors</strong> variable</li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </p>
+            </section>
+            <section>
+                <p><ul>
+                    <li>Sub-class may modify the super-class behavior (by modifying the super-class methods)</li>
+                    <li>This is called <strong>polymorph</strong></li>
+                    <li>For example:
+                        <li>A <strong>Vehicle</strong> class has a function called <strong>get_wheels_nbr()</strong>, which is <strong>abstracted</strong>, and not implemented</li>
+                        <li>A <strong>Truck</strong> implements the <strong>get_wheels_nbr()</strong> to return 4</li>
+                        <li>A <strong>Motorcycle</strong> implements the <strong>get_wheels_nbr</strong>() to return 2</li>
+                    </li>
+                </ul></p>
+            </section>
+        </section>
+        <section>
+            <h3>OOP in Python</h3>
+            <section>
+                <p>Syntax:
+                    <pre class='python hljs'><code>class MyClass(object):                       # Define MyClass
+    def __init__(self, data1):                     # constructor
+        self.variable1 = data1                     # initialize variable
+    def __del__(self):                             # destructor
+        cleanup_this()
+    def do_something(self, data3):                 # a class method
+        if self.data1 > data3:
+            print('Greater')
+        else:
+            print('Not greater')
+        return
+
+obj1 = MyClass(1)                                  # initialize an object
+obj1.do_something(3)                               # print Not greater
+obj1.variable1 = 4                                 # Modify variable1
+obj1.do_something(3)                               # print Greater
+                    </code></pre>
+                </p>
+            </section>
+            <section>
+                <p><ul>
+                    <li>Python does not really have <strong>encapsulation</strong></li>
+                    <li>The base class for all python classes is <strong>object</strong></li>
+                    <li>By convention: class name is <strong>Capitalized</strong></li>
+                    <li>To create an object of a class, <strong>invoke</strong> the class name like a function</li>
+                    <li>The first argument to all methods is <strong>self</strong>, which references the current <strong>object</strong></li>
+                </ul></p>
+            </section>
+            <section>
+                Inheritance example
+                <pre class='python hljs'><code>class MyBase(object):
+    def __init__(self, number):
+        self.base_number = number
+    def print_number(self):
+        print('Number is', self.base_number)
+class MyChild1(MyBase):
+    def __init__(self, number):
+        self.base_number = number + 10
+class MyChild2(MyBase):
+    def print_number(self):
+        print('My number is changed to:', self.base_number + 100)
+obj1 = MyBase(1)
+obj1.print_number()     # print 1
+obj2 = MyChild1(1)
+obj2.print_number()     # print 11
+obj3 = MyChild2(1)
+obj2.print_number()     # print 101</code></pre>
+            </section>
+            <section>
+                <p><ul>
+                    <li>Without specifying a constructor, the current class will use its super-class constructor</li>
+                    <li>By defining a funcition with the same name, you can archive <strong>polymorphism</strong></li>
+                    <li>But...how do I access the parent's function?</li>
+                    <li>Use the <strong>super()</strong> keyword:
+                        <ul>
+                            <li><strong>First</strong> argument to <strong>super()</strong> is the current class name</li>
+                            <li><strong>Second</strong> argument to <strong>super()</strong> is <strong>self</strong></li>
+                            <li>Super returns the parent object</li>
+                            <li>You can access super-class data and methods</li>
+                        </ul>
+                    </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><strong>super</strong> example:
+                <pre class='python hljs'><code>class MyBase(object):
+    def __init__(self, number):
+        self.number = number
+    def print_it(self):
+        print('number is', self.number)
+class MyChild(MyBase):
+    def print_it(self):
+        super(MyChild, self).print_it()         # calls the parent's method
+        print('Then, my number is changed to:', self.number + 10)
+obj = MyChild(1)
+obj.print_it():                 # print:      number is 1
+                                # also print: Then, my number is changed to: 11
+                </code></pre>
+                </p>
+            </section>
+        </section>
+        <section>
+            <h3>Procedural vs. OOP</h3>
+            <section>
+                <pre class='python hljs'><code>def get_name():
+    return input('Please enter your name')
+def greet(name):
+    print('Special greeting to', name)
+
+name = get_name()
+while not name == 'done':
+    greet(name)
+    name = get_name()
+                </code></pre>
+            </section>
+            <section>
+                <p>OOP design:
+                    <pre class='python hljs'><code>class MyGreeter(object):
+    def __init__(self):
+        self.name = 'done'
+    def get_name(self):
+        self.name = input('Please enter your name')
+    def greet(self):
+        print('Special greeting to', name)
+    def run(self):
+        self.get_name()
+        while not self.name == 'done':
+            self.greet()
+            self.get_name()
+
+greeter = MyGreeter()
+greeter.run()
+                    </code></pre>
+                </p>
+            </section>
+        </section>
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+
