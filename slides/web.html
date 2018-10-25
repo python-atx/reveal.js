@@ -223,6 +223,138 @@ return resp
                 </ul></p>
             </section>
         </section>
+        <section>
+            <h3>Django</h3>
+            <section>
+                <p>
+                <ul>
+                <li>Installation: Similar to Flask, you can use <strong>pip</strong> or <strong>PyCharm</strong></li>
+                <li>Within PyCharm, start the terminal, and run the following command to start a new django project:
+                    <pre class='hljs'><code>django-admin startproject myproject</code></pre>
+                </li>
+                <li>Then, within the project directory, run:
+                    <pre class='hljs'><code>py manage.py startapp myapp</code></pre>
+                </li>
+                <li>We're ready to write some web application!</li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Django loosely follows <strong>MVP</strong> design: <strong>M</strong>odel, <strong>V</strong>iew, and <strong>C</strong>ontroller</li>
+                <li><strong>Model</strong>: Database model! Map Python classes to database tables.
+                    <ul>
+                    <li>An instance or an object is a row/entry/record</li>
+                    <li>In Django, we use models.py to implement all models</li>
+                    </ul>
+                </li>
+                <li><strong>View</strong>: A "view" or a page
+                    <ul>
+                    <li>How a page should look, what scripts are available, is there a table, etc</li>
+                    <li>In django, we use <strong>templates</strong> and views.py to implement the view</li>
+                    </ul>
+                </li>
+                <li><strong>Controller</strong>: What should be presented, and in what way
+                    <ul>
+                    <li>Django already impelements the controller for us</li>
+                    </ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Take a first look at a "view"</li>
+                <li>Sample view.py:
+                    <pre class='python hljs'><code>from django.http import HttpReponse
+def index(request):
+    return HttpResponse('Hello world! This page is pretty static')</code></pre>
+                </li>
+                <li>We want index to be responsible for "/myapp/index.html" request</li>
+                <li>How do we tell Django that?</li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>We specify the "path" in <strong>urls.py</strong></li>
+                <li>Sample "<strong>myapp</strong>/urls.py":
+                    <pre class='python hljs'><code>from django.urls import path
+from . import views
+urlpatterns = [
+    path('/index.html', views.index, name='index')
+]
+                    </code></pre>
+                </li>
+                <li>Sample "<strong>myproject</strong>/urls.py":
+                    <pre class='python hljs'><code>from django.contrib import admin  # created by django
+from django.urls import include, path   # created by django
+
+urlpatterns = [
+    path('myapp/', include('myapp.urls')),  # tell django to use myapp.urls
+    path('admin/', admin.site.urls),   # created by django
+]</code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Let's take a look at the database <strong>models</strong>....</li>
+                <li>If you are thinking about tables, SELECT, JOIN, you're not thinking in Python</li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>More along this line:
+                    <ul>
+                    <li>A <strong>Person</strong> has <strong>name</strong>, and <strong>age</strong></li>
+                    <li>A <strong>Person</strong> has a <strong>relationship</strong> with another <strong>Person</strong></li>
+                    </ul>
+                </li>
+                </ul></p>
+                <pre class='python hljs'><code>from django.db import models
+class Person(models.Model):
+    name = models.CharField(max_length=200)
+    age = models.DecimalField(max_digits=3)
+class Relationship(models.Model)
+    person1 = models.ForeignKey(Person)
+    person2 = models.ForeignKey(Person)
+                </code></pre>
+            </section>
+            <section>
+            <p>We can start doing something like this:</p>
+            <pre class='python hljs'><code>from myapp.models.py import Person, Relationship
+p1 = Person(name=Jon, age=20)
+p1.save()
+p2 = Person(name=Nancy, age=21)
+p2.save()
+r = Relationship(person1=p1, person2=p2)
+r.save()
+
+for person in Person.objects.all():
+    print(person)   # print Jon, then Nancy</code></pre>
+            </section>
+            <section>
+                <h4>We do not need to know SQL</h4>
+            </section>
+        </section>
+        <section>
+            <h3>Object-Relational Mapping</h3>
+            <section>
+                <p><ul>
+                <li>What django provided for interacting with database</li>
+                <li>If you use Django, use the built-in ORM tool</li>
+                <li>If you just want database interaction without Django, uses <strong>SQLAlchemy</strong></li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>You can interact with databases just like Python object</li>
+                <li>You can interact with <strong>many</strong> database backend</li>
+                <li>You do not need to know the backend</li>
+                <li>You can change one config file, and change the entire DB backend</li>
+                <li>Without changing SQL Queries, connection, etc</li>
+                </ul></p>
+            </section>
+        </section>
         </div></div>
 
         <script src='../lib/js/head.min.js'></script>
