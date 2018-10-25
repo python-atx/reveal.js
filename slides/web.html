@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+        <section>
+            <h3>Web Framework</h3>
+        </section>
+        <section>
+            <h3>Web Technology</h3>
+            <section>
+            <p><ul>
+            <li>Web is built on <strong>HTML</strong></li>
+            <li>You can view the current webpage HTML "source"</li>
+            <li>The browser display the HTML in a pretty way</li>
+            <li><strong>css</strong> is used to tell the browser <strong>how</strong> to display HTML <strong>elements</strong></li>
+            <li><strong>javascript</strong> is used to script the browser:
+                <ul>
+                <li>To modify the <strong>css</strong> property of certain elements
+                    <ul><li>which changes how it is displayed</li></ul>
+                </li>
+                <li>To modify the <strong>content</strong> of some element</li>
+                <li>To request additional content</li>
+                </ul>
+            </li>
+            </ul></p>
+            </section>
+            <section>
+            <p><ul>
+            <li>Before the browser sees HTML, it has to <strong>request</strong> it</li>
+            <li>A browser may use one of these request:
+                <ul>
+                <li>GET</li>
+                <li>POST</li>
+                <li>PUT</li>
+                <li>DELETE</li>
+                <li>HEAD</li>
+                </ul>
+            </li>
+            <li>Browser, and server, uses <strong>HTTP</strong> protocol to communicate</li>
+            </ul></p>
+            </section>
+            <section>
+            <p>A request needs the following:
+            <ul>
+                <li>A <strong>method</strong></li>
+                <li>A resource path (<strong>u</strong>niversal <strong>r</strong>esource <strong>l</strong>ocation, or <strong>url</strong>)</li>
+                <li>HTTP Protocol <strong>version</strong></li>
+                <li>Many <strong>headers</strong></li>
+            </ul></p>
+            <pre class='hljs'><code>GET /index.html HTTP/1.0
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0
+Host: google.com
+Accept: text/html</code></pre>
+            </section>
+            <section>
+            <p><ul>
+                <li>The server sees the request, and have to <strong>response</strong></li>
+                <li>A response has the following
+                    <ul>
+                    <li>A response <strong>code</strong>: Indicate error code (success, error, not found, etc)</li>
+                    <li>Many <strong>response headers</strong></li>
+                    <li>Response content: this is usually HTML</li>
+                    </ul>
+                </li>
+            </ul></p>
+            <pre class='hljs'><code>200 OK
+Content-Length: 6
+Content-Type: text/html
+Hello!</code></pre>
+            </section>
+        </section>
+        <section>
+            <h3>Python web framework</h3>
+            <p><ul>
+            <li>Allow you to easily manipulate and control:
+                <ul>
+                    <li>headers</li>
+                    <li>content (html)</li>
+                </ul>
+            </li>
+            <li>There are two main framework for web development:
+                <ul>
+                <li><a href="https://www.djangoproject.com/">Django</a>: Full-feature</li>
+                <li><a href="http://flask.pocoo.org/">Flask</a>: lightweight</li>
+                </ul>
+            </li>
+            </ul></p>
+        </section>
+        <section>
+            <h3>Flask</h3>
+            <section>
+            <p>Installation
+            <ul>
+            <li>Using PIP: Open a command line prompt as administrator and run
+                <pre class='python hljs'><code>py -m pip install flask</code></pre>
+            </li>
+            <li>Using PyCharm:
+                <ul>
+                <li>Create a new project for Flask</li>
+                <li>Within the new project, go to <strong>File</strong>-><strong>Settings</strong></li>
+                <li>Click on <strong>Project: project_name</strong>, then <strong>Project interpreter</strong></li>
+                <li>Click the <strong>+</strong> button to add a package</li>
+                <li>Type in Flask, and install it</li>
+                </ul>
+            </li>
+            </ul></p>
+            </section>
+            <section>
+                <p>Sample FLASK app:</p>
+                <pre class='python hljs'><code>from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+@app.route("/hello/< name>")
+def main(name='world'):
+    return "Hello world"
+
+@app.route("/index.html")
+def index():
+    return "index page"
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=12345)</code></pre>
+            </section>
+            <section>
+            <p><ul>
+                <li>Writing HTML in Python is not fun</li>
+                <li>So, Flask allows you to have a Python <strong>template</strong></li>
+                <li>Kinda like a static <strong>HTML file</strong></li>
+                <li>But with fancy "python" features</li>
+                <li>Like <strong>variable</strong>, <strong>loop</strong>, <strong>branch</strong></li>
+            </ul></p>
+            </section>
+            <section>
+                <p>Sample <strong>template</strong> hello.html</p>
+                <pre class='hljs'><code>{% block body %}
+{% if name %}
+    <h3>Hello {{name}}</h3>
+    {% if name == 'Nhan' %}
+        It is spelled: <br />
+        {% for c in name %}
+            {{c}} <br />
+        {% endfor %}
+    {% endif %}
+{% else %}
+    You did not give me any name!
+{% endif %}
+                </code></pre>
+            </section>
+            <section>
+                <p>We can then use the template. Flask looks at the <strong>template</strong> directory within the current directory for <strong>hello.html</strong></p>
+                <pre class='python hljs'><code>from flask import Flask, render_template
+app = Flask(__name__)
+app.route("/hello/< name>")
+def hello(name=None):
+    return render_template('hello.html', name=name)
+                </code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>Imagint the following URL:
+                    <pre class='hljs'><code>http://server.com/index.html?name=Jon&age=10</code></pre>
+                </li>
+                <li>name=Jon and age=10 are <strong>parameters</strong> provided to the index.html page</li>
+                <li>Using Flask, you can access them as a dictionary using <strong>request.args</strong>
+                    <pre class='python hljs'><code>from flask import request
+@app.route('/index.html')
+def index_html():
+    html = 'Arguments: <br />'
+    for key in request.args:
+        html += '{} -> {}<br />'.format(key, request.args[key])
+    return html
+                    </code>
+                </li>
+                <li>If a form is submitted, you can access the data within the form with <strong>request.form</strong></li>
+                </ul></p>
+            </section>
+            <section>
+                <p>There are other things you can acces with request object:
+                <ul>
+                    <li>request.files: Files uploaded by the browser</li>
+                    <li>request.cookies: Cookies provided by the browser</li>
+                    <li>request.path: URL/path from the request</li>
+                    <li>request.method: GET, POST, PUT, DELETE, etc</li>
+                    <li>request.headers: HTTP request headers</li>
+                    <li>And many more</li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Other then simply returning HTML, you can do more advanced response</li>
+                <li>Like setting a cookie, or setting a new reponse header</li>
+                <li>You can do that by importing and using <strong>make_response</strong></li>
+                <li>Syntax:
+                    <pre class='python hljs'><code>resp = make_response(render_template(...))
+resp.set_cookie('username': username)
+resp.headers['X-my-custom-header'] = 'My value'
+return resp
+                    </code></pre>
+                </li>
+                </ul></p>
+            </section>
+        </section>
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+
+
