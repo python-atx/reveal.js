@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+        <section>
+            <h3>Git</h3>
+        </section>
+        <section>
+            <h3>Source code control</h3>
+            <p><ul>
+            <li>Helps organize and track source code, or text files</li>
+            <li>Keep a good history to document all changes</li>
+            <li>Sync changes amongst multiple contributors</li>
+            <li>The new standard: <strong>git</strong></li>
+            </ul></p>
+        </section>
+        <section>
+            <h3>GIT</h3>
+            <section>
+            <p><ul>
+            <li>By itself, git is an open source project</li>
+            <li>Download git 64bit using <a href="https://git-scm.com/downloads/">the following URL</a></li>
+            <li>Install Git, accepting all the default settings</li>
+            <li>If you are on Linux, use your own package manager for installing git</li>
+            <li>Let's start a new git project using PyCharm</li>
+            </ul></p>
+            </section>
+            <section><img data-src="data/git/00.git.pycharm.settings.png" /></section>
+            <section><img data-src="data/git/01.pycharm.configure.git.png" /></section>
+            <section><img data-src="data/git/02.enable_version_control.png" /></section>
+            <section><img data-src="data/git/03.select_git.png" /></section>
+            <section><img data-src="data/git/04.ignore.png" /></section>
+            <section><img data-src="data/git/05.commit.ignore.png" /></section>
+            <section><img data-src="data/git/06.docommit.png" /></section>
+            <section><img data-src="data/git/07.showlog.png" /></section>
+            <section><img data-src="data/git/08.testfile.png" /></section>
+            <section><img data-src="data/git/09.commit.test.png" /></section>
+            <section><img data-src="data/git/10.show.diff.png" /></section>
+            <section><img data-src="data/git/11.gitdiff.png" /></section>
+            <section><img data-src="data/git/12.commit.change.png" /></section>
+            <section><img data-src="data/git/13.show.log.png" /></section>
+            <section><img data-src="data/git/14.another.diff.png" /></section>
+            <section><img data-src="data/git/15.more.detail.diff.png" /></section>
+            <section><img data-src="data/git/16.undo changes.png" /></section>
+            <section><img data-src="data/git/17.revert.any.changes.png" /></section>
+            <section><img data-src="data/git/18.cleanup.change.png" /></section>
+            <section><img data-src="data/git/19.revert.png" /></section>
+        </section>
+        <section>
+            <h3>Github</h3>
+            <section>
+                <p><ul>
+                <li>You have a project directory locally</li>
+                <li>How do you share it with people?</li>
+                <li>And, how do you contribute to another project?</li>
+                <li>Introducint <strong>github</strong></li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Github <strong>host</strong> your project for you</li>
+                <li>You have to <strong>push</strong> your project to github</li>
+                <li>You promise to be nice: Open source your project</li>
+                <li>Github also have:
+                    <ul>
+                    <li>Issues/ticket tracking system</li>
+                    <li>Statistics and pretty graphs</li>
+                    <li>Collaboration tools</li>
+                    </ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p>DEMO</p>
+            </section>
+            <section>
+                <h3>Using Github</h3>
+                <section><img data-src="data/git/19.signup.png" /></section>
+                <section><img data-src="data/git/20.settings.github.png" /></section>
+                <section><img data-src="data/git/21.settings.github.2.png" /></section>
+                <section><img data-src="data/git/22.settings.github.3.png" /></section>
+                <section><img data-src="data/git/23.new.repo.png" /></section>
+                <section><img data-src="data/git/24.create.png" /></section>
+                <section><img data-src="data/git/25.push.png" /></section>
+                <section><img data-src="data/git/26.push.1.png" /></section>
+                <section><img data-src="data/git/27.push.2.png" /></section>
+                <section><img data-src="data/git/28.clone.0.png" /></section>
+                <section><img data-src="data/git/29.clone.png" /></section>
+                <section><img data-src="data/git/30.cloned.png" /></section>
+            </section>
+        </section>
+        <section>
+            <h3>Git cmd</h3>
+            <p><ul>
+            <li>You do not need PyCharm, or GUI for git</li>
+            <li>Everything can be done via the command line</li>
+            </ul></p>
+            <pre class='python hljs'><code>git clone https://github.com/username/someproject
+cd someproject
+git log
+(edit some files)
+git status
+git add file1
+git add file2
+git commit -m "Some message"
+git push
+            </code></pre>
+        </section>
+        <section>
+            <p><ul>
+            <li>GUI is nicer and easier to use</li>
+            <li>But...most tutorial uses the command line</li>
+            <li>You should be familiar with the command line to follow tutorial</li>
+            <li>git is <strong>hard</strong></li>
+            <li>I mess up all the time</li>
+            <li>Don't feel bad. It takes time to have a "feel" for git</li>
+            </ul></p>
+        </section>
+
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+

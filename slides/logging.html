@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+        <title>reveal.js</title>
+
+        <link rel='stylesheet' href='../css/reveal.css'>
+        <link rel='stylesheet' href='../css/theme/mine.css'>
+
+        <!-- Theme used for syntax highlighting of code -->
+    <link rel='stylesheet' href='../lib/css/zenburn.css'>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!-- custom style-->
+        <!-- .slide: style="text-align: left;"> -->
+    </head>
+    <body>
+        <div class='reveal'><div class='slides'>
+        <section>
+            <h3>Logging</h3>
+        </section>
+        <section>
+            <h3>Logging</h3>
+            <section>
+                <p><ul>
+                <li>To keep a good record of events that happened</li>
+                <li>What shoudl you log?
+                    <ul>
+                    <li>Behavior: opened a file, connected to a server, etc</li>
+                    <li>Errors: Failed to process a job</li>
+                    <li>Exceptions: Connection terminated, file not found</li>
+                    <li>Debug details: looking for file "input.txt", user enter "123" and we crash</li>
+                    </ul>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p>
+                <ul>
+                    <li>A good logging support/solution needs the following:
+                        <ul>
+                        <li>Log format: How a message should look</li>
+                        <li>Log handler: WHere a message should go</li>
+                        <li>Log level: How detailed we are logging</li>
+                        </ul>
+                    </li>
+                    <li>Python has builtin support for logging, using <strong>logging</strong> module</li>
+                </ul>
+                </p>
+            </section>
+        </section>
+        <section>
+            <h3>Logging in python</h3>
+            <section>
+                <p><ul>
+                    <li>logging module contains a <strong>Formater</strong> class</li>
+                    <li>This class determines how a  record should look like</li>
+                    <li>Include "place holders" for many useful things:
+                        <ul>
+                        <li><strong>asctime</strong>: Time stamp</li>
+                        <li><strong>filename</strong>: Which file is logging</li>
+                        <li><strong>levelname</strong>: Log level</li>
+                        <li><strong>message</strong>: The actual message</li>
+                        </ul>
+                    </li>
+                    <li>Syntax:
+                        <pre class='python hljs'><code>import logging
+format_string = '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+fmt = logging.Formater(format_string)
+                        </code></pre>
+                    </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                    <li><strong>logging</strong> module also contains a <strong>Handler</strong></li>
+                    <li>This class determines where to log the message</li>
+                    <li>Common handlers:
+                        <ul>
+                        <li><strong>StreamHandler</strong>: Sends to console/stderr/stdout</li>
+                        <li><strong>FileHandler</strong>: Logs to a file</li>
+                        <li><strong>TimedRotatingFileHandler</strong>: Log, and rotate</li>
+                        <li><strong>SocketHandler</strong>: Sends to a socket (network)</li>
+                        <li><strong>SMTPHandler</strong>: Sends to an email</li>
+                        </ul>
+                    </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li><strong>logging</strong> contains log <strong>levels</strong></li>
+                <li>This indicates the level of severity for the message</li>
+                <li>CRITICAL > ERROR > WARNING > INFO > DEBUG</li>
+                <li>If you set a log level, you receives all messages belonging to a higher levels</li>
+                <li>DEBUG shows everything</li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Finally, logging has a <strong>Logger</strong> class</li>
+                <li>A logger has a <strong>name</strong></li>
+                <li>Then, you can sets the <strong>Formatter</strong>, <strong>Handler</strong> and <strong>Levels</strong></li>
+                </ul></p>
+                <pre class='python hljs'><code>import logging
+fmt = logging.Formater('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+handler = logging.StreamHandler()
+handler.setFormatter(fmt)
+level = logging.ERROR
+logger = logging.getLogger('A')
+logger.setLevel(level)
+logger.addHandler(handler)
+
+logger.error('This is an error')
+logger.debug('A debug message, just to be noisy')   # This is not printed</code></pre>
+            </section>
+            <section>
+                <p><ul>
+                <li>You should always set a logger name:
+                    <pre class='python hljs'><code>import logging
+logger = logging.getLogger('UserInput')
+logger2 = logging.getLogger('Processing')</code></pre>
+                </li>
+                <li>Without a name, you are using the <strong>same</strong> default logger:
+                    <pre class='python hljs'><code>import logging
+l1 = logging.getLogger()
+l2 = logging.getLogger()
+print(l1 == l2)         # True!</code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>A logger can have more than one handler</li>
+                <li>Use a logger, you can send multiple log messages to many locations</li>
+                <li>Each message may have its own format</li>
+                <li>This is very flexible</li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>It is common practice to create a logger for your library/module</li>
+                <li>Then, use the logger throughout the entire library</li>
+                <li>Log as much as you can, to the correct logging levels</li>
+                <li>Let the library user determines which log level to receive</li>
+                <li>This help support something like this:
+                    <pre class='python hljs'><code>log_levels = {
+    '-v': logging.WARNING, '-vv': logging.DEBUG, '-vvv': logging.INFO,
+}
+if log_detail in log_levels:
+    level = log_levels.get(log_detail)
+else:
+    level = logging.ERRORS
+logger.setLevel(level)</code></pre>
+                </li>
+                </ul></p>
+            </section>
+            <section>
+                <p><ul>
+                <li>Python has a <strong>quick</strong> configuration option</li>
+                <li>To use default formater, StreamHandler, and logging.WARNING</li>
+                </ul></p>
+                <pre class='python hljs'><code>import logging
+logging.basicConfig()
+logger = logging.getLogger('MyLogger')
+logger.debug('Debug message! This does not appear')
+logger.error('This is an error')
+logger.info('This does not appear')
+logger.setLevel(logging.INFO)
+logger.info('Now it appears too')
+                </code></pre>
+            </section>
+        </section>
+        <section>
+            <h3>Third party handlers</h3>
+            <section>
+                <p><ul>
+                <li>There are many third parties logging handlers</li>
+                <li>Supports S3, logstash, RabbitMQ, etc</li>
+                <li>Do not implement your own logging handler, use a public one</li>
+                </ul></p>
+            </section>
+        </section>
+        </div></div>
+
+        <script src='../lib/js/head.min.js'></script>
+        <script src='../js/reveal.js'></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: '../plugin/markdown/marked.js' },
+                    { src: '../plugin/markdown/markdown.js' },
+                    { src: '../plugin/notes/notes.js', async: true },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
+
